@@ -1,0 +1,28 @@
+@page {
+    size: A4; /* ; was missing */
+    margin: 15mm 10mm 15mm 10mm;
+  }
+  
+  .sect1.gameplay, #preamble {
+    column-count: 2;
+    margin-right: 0.6cm;
+    margin-left: 0.6cm;
+  }
+  
+  h2 {
+    margin-top: 0;
+    break-before: always;
+  }
+  
+  .passage h3 {
+    text-align: center;
+  }
+
+  table.choices {
+    width: 100%;
+  }
+
+  /* never break up */
+  .sect2.passage {
+    break-inside: avoid;
+  }

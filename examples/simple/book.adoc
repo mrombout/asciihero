@@ -1,0 +1,19 @@
+= Simple
+:doctype: book
+
+[.gameplay]
+== Chapter 1
+
+[#test1.passage]
+=== Section 1
+
+Lorum ipsum
+
+[choices]
+* choice:1[North?]
+* choice:2[South?]
+
+[#test2.passage]
+=== Section 2
+
+Hello!
