@@ -1,5 +1,6 @@
 = Simple
 :doctype: book
+:gamebook-combat-attributes: strength, dexterity
 
 [.gameplay]
 == Chapter 1
@@ -22,3 +23,7 @@ Hello!
 === test_3
 
 Hello World!
+
+[combat]
+* enemy:Goblin[strength=12, dexterity=10]
+* enemy:Goblin[strength=4, dexterity=3]

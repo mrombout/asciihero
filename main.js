@@ -3,75 +3,130 @@ import asciidoctor from 'asciidoctor' // (1)
 const Asciidoctor = asciidoctor()
 
 Asciidoctor.Extensions.register(function (registry) {
-    registry.inlineMacro('passage', function () {
-        var self = this
+    registry.inlineMacro('enemy', function () {
+        var self = this;
+
         self.process(function (parent, target, attrs) {
-            return self.createInline(parent, "quoted", "TBD", { "type": "strong" })
-        })
+            var object = {
+                "name": target,
+                "attributes": attrs
+            };
+            var content = JSON.stringify(object)
+
+            return self.createInline(parent, "quoted", content)
+        });
     })
-    registry.inlineMacro('choice', function () {
-        var self = this
-        self.positionalAttributes(["text"])
-        self.process(function (parent, target, attrs) {
-            return self.createInline(parent, "quoted", attrs.text, { "type": "strong" })
-        })
-    })
-    registry.treeProcessor(function () {
+    registry.treeProcessor('combat', function () {
         var self = this;
 
         self.process(function (doc) {
-            var nodes = doc.findBy({ "context": "section" }, function(section) {
-                return section.sectname == "section"
-            })
+            var nodes = doc.findBy({ "style": "combat" })
 
-            var sectionIndex = 1;
-            for(var index in nodes) {
+            for (var index in nodes) {
                 var node = nodes[index];
 
-                node.setId(node.title)
-                node.setTitle(`${sectionIndex}`)
-                sectionIndex += 1
+                var attributes = doc.getAttribute("gamebook-combat-attributes").split(",").map(x => x.trim())
+
+                var content = `[cols="${Array(attributes.length + 1).fill("1").join(",")}"]
+|===
+`
+                var header = `|\n`
+                for (var index in attributes) {
+                    var attribute = attributes[index]
+                    header += `| ${attribute}\n`
+                }
+                content += header
+                content += "\n"
+
+                for (var ci in node.blocks) {
+                    var node2 = node.blocks[ci]
+
+                    var rawContent = node2.getText()
+                    var jsonContent = JSON.parse(rawContent)
+
+                    content += `|${jsonContent.name}\n`
+                    for (var attribute in jsonContent.attributes) {
+                        var value = jsonContent.attributes[attribute]
+                        content += `| ${value}\n`
+                    }
+                }
+                content += "|===\n"
+                self.parseContent(node.parent, content)
+
+                var nodeIndex = node.parent.blocks.indexOf(node)
+                node.parent.blocks.splice(nodeIndex, 1);
             }
-        });
+        })
     });
-//     registry.treeProcessor(function () {
-//         var self = this // TreeProcessor
-//         self.process(function (doc) {
-//             var nodes = doc.findBy({
-//                 "style": "choices"
-//             })
-//             var ulist = nodes[0]
+    // registry.inlineMacro('passage', function () {
+    //     var self = this
+    //     self.process(function (parent, target, attrs) {
+    //         return self.createInline(parent, "quoted", "TBD", { "type": "strong" })
+    //     })
+    // })
+    // registry.inlineMacro('choice', function () {
+    //     var self = this
+    //     self.positionalAttributes(["text"])
+    //     self.process(function (parent, target, attrs) {
+    //         return self.createInline(parent, "quoted", attrs.text, { "type": "strong" })
+    //     })
+    // })
+    // registry.treeProcessor(function () {
+    //     var self = this;
 
-//             var choices = []
-//             while (ulist.blocks.length > 0) {
-//                 var choice = ulist.blocks.pop()
-//                 choices.push(choice)
-//             }
+    //     self.process(function (doc) {
+    //         var nodes = doc.findBy({ "context": "section" }, function(section) {
+    //             return section.sectname == "section"
+    //         })
 
-//             var content = `[.choices]
-// [cols="10,1,>1"]
-// |===
-// `;
-//             for (var index in choices) {
-//                 var choice = choices[index]
+    //         var sectionIndex = 1;
+    //         for(var index in nodes) {
+    //             var node = nodes[index];
 
-//                 const regex = /choice:([a-z0-9])/g;
-//                 var matches = regex.exec(choice.text)
-//                 var target_link = matches[1]
+    //             node.setId(node.title)
+    //             node.setTitle(`${sectionIndex}`)
+    //             sectionIndex += 1
+    //         }
+    //     });
+    // });
+    //     registry.treeProcessor(function () {
+    //         var self = this // TreeProcessor
+    //         self.process(function (doc) {
+    //             var nodes = doc.findBy({
+    //                 "style": "choices"
+    //             })
+    //             var ulist = nodes[0]
 
-//                 content += `| ${choice.text}
-// | Turn to
-// | <<${target_link}>>
-// `
-//             }
+    //             var choices = []
+    //             while (ulist.blocks.length > 0) {
+    //                 var choice = ulist.blocks.pop()
+    //                 choices.push(choice)
+    //             }
 
-//             content += `|===`;
+    //             var content = `[.choices]
+    // [cols="10,1,>1"]
+    // |===
+    // `;
+    //             for (var index in choices) {
+    //                 var choice = choices[index]
 
-//             self.parseContent(ulist.parent, content)
+    //                 const regex = /choice:([a-z0-9])/g;
+    //                 var matches = regex.exec(choice.text)
+    //                 var target_link = matches[1]
 
-//             return doc
-//         })
-//     });
+    //                 content += `| ${choice.text}
+    // | Turn to
+    // | <<${target_link}>>
+    // `
+    //             }
+
+    //             content += `|===`;
+
+    //             self.parseContent(ulist.parent, content)
+
+    //             return doc
+    //         })
+    //     });
 })
 
 var file = "./examples/simple/book.adoc";
