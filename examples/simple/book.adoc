@@ -5,21 +5,21 @@
 [.gameplay]
 == Chapter 1
 
-[section]
+[segment]
 === test_1
 
-Lorum ipsum
+Lorum ipsum, turn to turn:test_2[].
 
 [choices]
-* choice:1[North?]
-* choice:2[South?]
+* choice:test_1[North?]
+* choice:test_2[South?]
 
-[section]
+[segment]
 === test_2
 
-Hello!
+Hello <<test_3>>!
 
-[section]
+[segment]
 === test_3
 
 Hello World!
