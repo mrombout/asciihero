@@ -4,8 +4,8 @@
 [.gameplay]
 == Chapter 1
 
-[#test1.passage]
-=== Section 1
+[section]
+=== test_1
 
 Lorum ipsum
 
@@ -13,7 +13,12 @@ Lorum ipsum
 * choice:1[North?]
 * choice:2[South?]
 
-[#test2.passage]
-=== Section 2
+[section]
+=== test_2
 
 Hello!
+
+[section]
+=== test_3
+
+Hello World!
