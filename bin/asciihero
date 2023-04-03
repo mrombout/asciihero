@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
+const { watch } = require('node:fs')
 
 const Asciidoctor = require('asciidoctor')
 const asciihero = require('../packages/asciihero/asciihero.js')
 
-yargs(hideBin(process.argv))
+const arg = yargs(hideBin(process.argv))
   .command('$0 [files...]', '', () => {
     return yargs
   })
@@ -32,10 +33,17 @@ yargs(hideBin(process.argv))
   })
   .parse()
 
+function convertFile (asciidoctor, file) {
+  const label = `converting ${file}`
+
+  console.time(label)
+  asciidoctor.convertFile(file, options)
+  console.timeEnd(label)
+}
+
 const asciidoctor = Asciidoctor()
 asciihero.register(asciidoctor.Extensions)
 
-const file = './examples/simple/book.adoc'
 const options = {
   to_file: true,
   mkdirs: true,
@@ -44,8 +52,22 @@ const options = {
   }
 }
 
-asciidoctor.convertFile(file, options)
+if (arg.watch) {
+  for (const fileIndex in arg.files) {
+    const file = arg.files[fileIndex]
+    watch(file, (eventType, filename) => {
+      if (eventType !== 'change') {
+        return
+      }
 
-// const doc = asciidoctor.loadFile(file)
-// const res = doc.convert(options);
-// console.log(res)
+      if (filename) {
+        convertFile(asciidoctor, file)
+      }
+    })
+  }
+} else {
+  for (const fileIndex in arg.files) {
+    const file = arg.files[fileIndex]
+    convertFile(asciidoctor, file)
+  }
+}
