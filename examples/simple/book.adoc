@@ -8,7 +8,7 @@
 [segment]
 === test_1
 
-Lorum ipsum, turn to turn:test_2[].
+This is segment 1, turn to turn:test_2[].
 
 [choices]
 * choice:test_1[North?]
@@ -17,13 +17,18 @@ Lorum ipsum, turn to turn:test_2[].
 [segment]
 === test_2
 
-Hello <<test_3>>!
+Hello <<test_3>>! This is segment 2.
 
 [segment]
 === test_3
 
-Hello World!
+Hello World! It's segment 3 here.
 
 [combat]
 * enemy:Goblin[strength=12, dexterity=10]
 * enemy:Goblin[strength=4, dexterity=3]
+
+[segment]
+=== test_4
+
+And this is segment 4.
