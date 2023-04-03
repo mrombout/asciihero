@@ -1,0 +1,51 @@
+#!/usr/bin/env node
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
+
+const Asciidoctor = require('asciidoctor')
+const asciihero = require('../packages/asciihero/asciihero.js')
+
+yargs(hideBin(process.argv))
+  .command('$0 [files...]', '', () => {
+    return yargs
+  })
+  .option('watch', {
+    type: 'boolean',
+    description: 'Watch a the files for changes, and automatically convert them when they change.'
+  })
+  .option('debug-output', {
+    type: 'boolean',
+    description: 'Write intermediate formats to disk, in addition to target output file.'
+  })
+  .option('style', {
+    type: 'string',
+    description: 'Set style to use for output format.'
+  })
+  .option('format', {
+    type: 'string',
+    description: 'Set format to use for output.',
+    choices: [
+      'pdf',
+      'epub',
+      'html'
+    ]
+  })
+  .parse()
+
+const asciidoctor = Asciidoctor()
+asciihero.register(asciidoctor.Extensions)
+
+const file = './examples/simple/book.adoc'
+const options = {
+  to_file: true,
+  mkdirs: true,
+  attributes: {
+    stylesheet: '../../stylesheet.css'
+  }
+}
+
+asciidoctor.convertFile(file, options)
+
+// const doc = asciidoctor.loadFile(file)
+// const res = doc.convert(options);
+// console.log(res)
