@@ -73,7 +73,7 @@ function choiceInlineMacro () {
 
   self.positionalAttributes(['text'])
   self.process(function (parent, target, attrs) {
-    return self.createInline(parent, 'quoted', attrs.text, { type: 'strong' })
+    return self.createInline(parent, 'quoted', attrs.text, { })
   })
 }
 
@@ -161,6 +161,10 @@ function shuffleTreeProcessor () {
   }
 
   self.process(function (doc) {
+    if (doc.getAttribute('gamebook-shuffle-style') !== 'random') {
+      return
+    }
+
     // shuffle all nodes
     const gameplayNodes = doc.findBy({ role: 'gameplay' })
     for (const gameplayNodeIndex in gameplayNodes) {

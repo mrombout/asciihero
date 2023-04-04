@@ -2,6 +2,7 @@
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 const { watch } = require('node:fs')
+const path = require('node:path')
 
 const Asciidoctor = require('asciidoctor')
 const asciihero = require('../packages/asciihero/asciihero.js')
@@ -25,6 +26,7 @@ const arg = yargs(hideBin(process.argv))
   .option('format', {
     type: 'string',
     description: 'Set format to use for output.',
+    default: 'html',
     choices: [
       'pdf',
       'epub',
@@ -33,11 +35,21 @@ const arg = yargs(hideBin(process.argv))
   })
   .parse()
 
-function convertFile (asciidoctor, file) {
+function convertFile (asciidoctor, format, file) {
   const label = `converting ${file}`
 
   console.time(label)
-  asciidoctor.convertFile(file, options)
+  if (format === 'html') {
+    asciidoctor.convertFile(file, options)
+  } else if (format === 'pdf') {
+    const { execSync } = require('node:child_process')
+
+    const stylesheetPath = path.resolve(__dirname, '../stylesheet.css')
+    const extensionPath = path.resolve(__dirname, '../packages/asciihero/asciihero.js')
+    console.log(extensionPath)
+    const returned = execSync(`npx asciidoctor-web-pdf --require ${extensionPath}  --attribute stylesheet="${stylesheetPath}" ${file}`)
+    console.log(returned.toString())
+  }
   console.timeEnd(label)
 }
 
@@ -61,13 +73,13 @@ if (arg.watch) {
       }
 
       if (filename) {
-        convertFile(asciidoctor, file)
+        convertFile(asciidoctor, arg.format, file)
       }
     })
   }
 } else {
   for (const fileIndex in arg.files) {
     const file = arg.files[fileIndex]
-    convertFile(asciidoctor, file)
+    convertFile(asciidoctor, arg.format, file)
   }
 }
