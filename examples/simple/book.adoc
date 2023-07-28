@@ -1,69 +1,60 @@
-= Simple
+= Simple: An Excellent Beginning
 :doctype: book
 :gamebook-combat-attributes: strength, dexterity
 
+== Introduction
+
+Asciidoc is just like any Asciidoc document.
+Any chapters that do not have the `[.gameplay]` role are treated like normal chapters.
+You can use this to introduce your game world, rules and mechanics.
+
+If you mark a section with the `[.gameplay]` role you tell Asciihero that this is the core of your gamebook.
+Within this section any child with the `[segment]` style will be considered a segment.
+A segment is a single numbered part of your gamebook.
+
 [.gameplay]
-== Chapter 1
+== gameplay
 
 [segment]
-=== test_1
+=== entrance_hall
 
-This is segment 1, turn to turn:test_2[].
+In Asciihero segments of a gamebook are regular AsciiDoc section with the `[segment]` style.
+This tells Asciihero that this section should be treated as a section and should be processed.
+
+Note how the section in the Asciidoc source is called `entrance_hall`, but the rendered document is shown as "1".
+This is a bit of convenient magic that Asciihero applies.
+This allows you to give your segments logical names that you can remember, and Asciihero will turn them into numbers for when it matters.
+
+You can use these segment names with the `turn:[]` macro to automatically place a link with the correct number.
+If you want to learn about choices, turn to turn:choices[].
+If you want to learn about combat, turn to turn:combat[].
+
+[segment]
+=== choices
+
+The `turn:[]` macro is great if you want to embed the segment number into a sentence.
+But sometimes you want to show multiple choices in a more consistent manner.
+You can use an unordered list with the `[choices]` style for that.
 
 [choices]
-* choice:test_1[North?]
-* choice:test_2[South?]
+* choice:entrance_hall[North?]
+* choice:combat[South?]
 
 [segment]
-=== test_2
+=== combat
 
-Hello <<test_3>>! This is segment 2.
-
-[segment]
-=== test_3
-
-Hello World! It's segment 3 here.
+So you want to fight some creatures do you?
+In Asciidoc you can easily include a combat block using an unordered list with the `[combat]` style.
 
 [combat]
 * enemy:Goblin[strength=12, dexterity=10]
 * enemy:Goblin[strength=4, dexterity=3]
 
-[segment]
-=== test_4
+If you win, turn:game_over[].
 
-And this is segment 4.
+[#game_over]
+== It's all over
 
-[segment]
-=== test_5
-
-This is really nice tree!
-
-[segment]
-=== test_6
-
-This is really nice tree!
-
-[segment]
-=== test_7
-
-This is really nice tree!
-
-[segment]
-=== test_8
-
-This is really nice tree!
-
-[segment]
-=== test_9
-
-This is really nice tree!
-
-[segment]
-=== test_10
-
-This is really nice tree!
-
-[segment]
-=== test_11
-
-This is really nice tree!
+And so, just like that it's all over.
+This was just a simple demonstration of what Asciihero can do.
+Check out the documentation, or the other examples to learn about the more advanced features of Asciihero!

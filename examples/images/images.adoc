@@ -1,0 +1,17 @@
+= Images
+:doctype: book
+
+== Introduction
+
+You can use images like any other AsciiDoc document.
+
+=== Dice
+
+Dice, they're more than just rocks.
+
+image:images/icons/d4.svg[width=16]
+image:images/icons/d6.svg[width=16]
+image:images/icons/d8.svg[width=16]
+image:images/icons/d10.svg[width=16]
+image:images/icons/d12.svg[width=16]
+image:images/icons/d20.svg[width=16]
