@@ -21,7 +21,12 @@ const arg = yargs(hideBin(process.argv))
   })
   .option('style', {
     type: 'string',
-    description: 'Set style to use for output format.'
+    description: 'Set style to use for output format.',
+    default: 'ff',
+    choices: [
+      'proteus',
+      'ff'
+    ]
   })
   .option('format', {
     type: 'string',
@@ -35,34 +40,36 @@ const arg = yargs(hideBin(process.argv))
   })
   .parse()
 
-function convertFile (asciidoctor, format, file) {
+function convertFile (asciidoctor, format, style, file) {
   const label = `converting ${file}`
 
   console.time(label)
   if (format === 'html') {
+    const stylesheetPath = path.resolve(__dirname, `../${style}.css`)
+    const options = {
+      to_file: true,
+      mkdirs: true,
+      attributes: {
+        stylesheet: stylesheetPath
+      }
+    }
     asciidoctor.convertFile(file, options)
   } else if (format === 'pdf') {
     const { execSync } = require('node:child_process')
 
-    const stylesheetPath = path.resolve(__dirname, '../stylesheet.css')
+    const stylesheetPath = path.resolve(__dirname, `../${style}.css`)
     const extensionPath = path.resolve(__dirname, '../packages/asciihero/asciihero.js')
     console.log(extensionPath)
     const returned = execSync(`npx asciidoctor-web-pdf --require ${extensionPath}  --attribute stylesheet="${stylesheetPath}" ${file}`)
     console.log(returned.toString())
+  } else if (format === 'epub') {
+    console.log("format 'epub' is not supported yet")
   }
   console.timeEnd(label)
 }
 
 const asciidoctor = Asciidoctor()
 asciihero.register(asciidoctor.Extensions)
-
-const options = {
-  to_file: true,
-  mkdirs: true,
-  attributes: {
-    stylesheet: '../../stylesheet.css'
-  }
-}
 
 if (arg.watch) {
   for (const fileIndex in arg.files) {
@@ -73,13 +80,13 @@ if (arg.watch) {
       }
 
       if (filename) {
-        convertFile(asciidoctor, arg.format, file)
+        convertFile(asciidoctor, arg.format, arg.style, file)
       }
     })
   }
 } else {
   for (const fileIndex in arg.files) {
     const file = arg.files[fileIndex]
-    convertFile(asciidoctor, arg.format, file)
+    convertFile(asciidoctor, arg.format, arg.style, file)
   }
 }

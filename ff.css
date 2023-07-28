@@ -1,0 +1,195 @@
+/* FF */
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+:root {
+  --a-color: darkblue;
+}
+
+#cover {
+  page: cover;
+}
+
+.gameplay {
+  page: gameplay;
+}
+
+@page {
+  size: 4.25in 6.87in;
+  margin: 0.5in 0.25in 0.25in 0.25in;
+}
+
+@page cover {
+  size: a4 landscape;
+  @top-right {
+    content: none;
+  }
+}
+
+@page gameplay :right {
+  @top-right {
+    content: string(title, first) "-" string(title, last);
+  }
+}
+@page gameplay :left {
+  @top-left {
+    content: string(title, first) "-" string(title, last);
+  }
+}
+
+@page :blank {
+  background-color: red;
+}
+
+html {
+  font-family: 'Merriweather', serif;
+  font-size: 0.75em;
+}
+
+p {
+  text-align: justify;
+}
+
+a {
+  text-decoration: none;
+  color: var(--a-color);
+}
+
+h1 {
+  font-family: 'Pirata One', cursive !important;
+  font-size: 5em;
+  text-align: center;
+  break-after: always;
+}
+
+h2,
+#toctitle {
+  margin-top: 0;
+  break-before: avoid-page;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  font-family: 'Spectral', serif;
+  font-size: 1.50em;
+  font-weight: bold;
+  margin: 0 1em 2.5em 1em;
+} */
+
+h3 {
+  text-align: center;
+  margin-bottom: 0.25em;
+  padding: 0;
+}
+
+h3 + div p {
+  margin-top: 0;
+}
+
+.sect1.gameplay {
+  margin-right: 0.6cm;
+  margin-left: 0.6cm;
+}
+
+.sect1.gameplay > h2 {
+  display: none;
+}
+
+.segment h3 {
+  text-align: center;
+  margin: 0;
+  string-set: title content(text);
+}
+
+.segment img {
+  break-before: always;
+  break-after: always;
+}
+
+.sect2.segment {
+  break-inside: avoid;
+}
+
+.sect2.segment p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.page-break {
+  break-after: page;
+}
+
+/******************************************************************************
+ * Choices Table
+ ******************************************************************************/
+table.choices {
+  width: 100%;
+}
+
+/* Never wrap the last two columns of a choices table ("turn to" and "<passage number>"). */
+table.choices tr td:nth-last-child(2),
+table.choices tr td:nth-last-child(1) {
+  white-space: nowrap;
+}
+
+table.choices p {
+  margin: 0;
+}
+
+/******************************************************************************
+ * Combat Table
+ ******************************************************************************/
+table.combat {
+  width: 100%;
+  text-transform: uppercase;
+}
+
+table.combat tr:first-child {
+  display: none;
+}
+
+/* This should be dynamic based on gamebook-combat-attributes document attribute. */
+table.combat tr td:nth-child(2) p::before {
+  content: "Skill ";
+}
+
+/* This should be dynamic based on gamebook-combat-attributes document attribute. */
+table.combat tr td:nth-child(3) p::before {
+  content: "Stamina ";
+}
+
+/******************************************************************************
+ * Table of Contents
+ ******************************************************************************/
+#toc {
+  page: tableofcontents;
+}
+
+#toc.toc {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+
+#toc.toc a {
+  color: black;
+}
+
+#toc.toc a::after,
+#toc.toc2 a::after {
+  content: "\A" target-counter(attr(href url), page);
+  white-space: pre-wrap;
+  padding-left: 6px;
+  color: var(--a-color);
+}
+
+#toc.toc ul,
+#toc.toc2 ul {
+  padding: 0;
+}
+
+#toc.toc li,
+#toc.toc2 li {
+  list-style-type: none;
+  margin: 0 0 1.5em 0;
+}

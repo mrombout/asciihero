@@ -25,7 +25,7 @@ function enemyInlineMacro () {
   })
 }
 
-function choiceTreeProcessor () {
+function combatTreeProcessor () {
   const self = this
 
   self.process(function (doc) {
@@ -36,7 +36,8 @@ function choiceTreeProcessor () {
 
       const attributes = doc.getAttribute('gamebook-combat-attributes').split(',').map(x => x.trim())
 
-      let content = `[cols="${Array(attributes.length + 1).fill('1').join(',')}"]\n`
+      let content = `[.combat]\n`
+      content += `[cols="${Array(attributes.length + 1).fill('1').join(',')}"]\n`
       content += '|===\n'
 
       let header = '|\n'
@@ -214,7 +215,7 @@ module.exports.register = function (registry) {
   registry.register(function () {
     this.inlineMacro('turn', turnInlineMacro)
     this.inlineMacro('enemy', enemyInlineMacro)
-    this.treeProcessor('combat', choiceTreeProcessor)
+    this.treeProcessor('combat', combatTreeProcessor)
     this.inlineMacro('choice', choiceInlineMacro)
     this.treeProcessor(segmentTreeProcessor)
     this.treeProcessor(choicesTreeProcessor)
