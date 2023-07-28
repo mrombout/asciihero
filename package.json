@@ -22,7 +22,7 @@
     "@asciidoctor/core": "^2.2.6",
     "asciidoctor": "^2.2.6",
     "asciidoctor-pdf": "^1.0.0-alpha.16",
-    "yargs": "^17.7.1"
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "eslint": "^8.37.0",
