@@ -1,3 +1,27 @@
+// segmentTreeProcessor processes all sections with the `segment` style by
+// assigning them the right IDs and seting a numeric title.
+function segmentTreeProcessor () {
+  const self = this
+
+  self.process(function (doc) {
+    const segmentNodes = doc.findBy({ context: 'section' }, function (section) {
+      return section.sectname === 'segment'
+    })
+
+    let sectionIndex = 1
+    for (const index in segmentNodes) {
+      const node = segmentNodes[index]
+
+      node.setId(node.title)
+      node.setTitle(`${sectionIndex}`)
+      node.addRole('segment')
+
+      sectionIndex += 1
+    }
+  })
+}
+
+// turnInlineMacro processes the `turn:<target>[]` marge and turns them into cross-references.
 function turnInlineMacro () {
   const self = this
 
@@ -11,6 +35,8 @@ function turnInlineMacro () {
   })
 }
 
+// enemyInlineMacro processes the `enemy:<name>[attrs]` macro and turns them into invisible data
+// elements to be used by the `combatTreeProcessor.`
 function enemyInlineMacro () {
   const self = this
 
@@ -25,6 +51,8 @@ function enemyInlineMacro () {
   })
 }
 
+// combatTreeProcessor processes unordered lists with the `combat` style and
+// renders a table with the enemy data.
 function combatTreeProcessor () {
   const self = this
 
@@ -69,6 +97,8 @@ function combatTreeProcessor () {
   })
 }
 
+// choiceInlineMacro processes `choice:<segment_id>[]` macro and turns them into
+// invisible data elements to be used by the `choicesTreeProcessor`.
 function choiceInlineMacro () {
   const self = this
 
@@ -78,27 +108,8 @@ function choiceInlineMacro () {
   })
 }
 
-function segmentTreeProcessor () {
-  const self = this
-
-  self.process(function (doc) {
-    const segmentNodes = doc.findBy({ context: 'section' }, function (section) {
-      return section.sectname === 'segment'
-    })
-
-    let sectionIndex = 1
-    for (const index in segmentNodes) {
-      const node = segmentNodes[index]
-
-      node.setId(node.title)
-      node.setTitle(`${sectionIndex}`)
-      node.addRole('segment')
-
-      sectionIndex += 1
-    }
-  })
-}
-
+// choicesTreeProcessor processes unordered lists with the `choices` style and
+// renders a table with the choices data.
 function choicesTreeProcessor () {
   const self = this
 
@@ -141,6 +152,11 @@ function choicesTreeProcessor () {
   })
 }
 
+// shuffleTreeProcessor shuffles all segments according to the
+// `gamebook-shuffle-style`.
+//
+// At the moment only `random` is supported, which shuffled all segments
+// randomly.
 function shuffleTreeProcessor () {
   const self = this
 
