@@ -57,6 +57,7 @@ function convertFile (asciidoctor, format, style, file) {
   } else if (format === 'pdf') {
     const { execSync } = require('node:child_process')
 
+    const baseStylesheetPath = path.resolve(__dirname, `../base.css`)
     const stylesheetPath = path.resolve(__dirname, `../${style}.css`)
     const extensionPath = path.resolve(__dirname, '../packages/asciihero/asciihero.js')
     console.log(extensionPath)

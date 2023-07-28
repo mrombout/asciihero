@@ -227,12 +227,41 @@ function shuffleTreeProcessor () {
   })
 }
 
+// dicetableBlockMacro processes the `dicetable:<size>[]` macro and renders a
+// table with random numbers. It is intended to be used by the reader as an
+// alternative to dice.
+function dicetableBlockMacro() {
+  var self = this;
+  self.process(function(parent, target, attrs) {
+    let numNumbers = parseInt(target, 10)
+    let numbers = Array(numNumbers)
+      .fill()
+      .map((e, i) => i + 1)
+      .sort(() => (Math.random() > .5) ? 1 : -1);
+    
+    let tableSize = Math.ceil(Math.sqrt(numNumbers))
+
+    let content = `[.dicetable.center]\n`;
+    content += `[cols="${Array(tableSize).fill('1').join(',')}"]\n`;
+    content += `|===\n`
+    for (let i = 0; i < tableSize; i++) {
+      for (let j = 0; j < tableSize; j++) {
+        const numberIndex = i*tableSize+j;
+        content += `|${numbers[numberIndex]}\n`;
+      }
+    }
+    content += `|===`
+    self.parseContent(parent, content)
+  })
+}
+
 module.exports.register = function (registry) {
   registry.register(function () {
     this.inlineMacro('turn', turnInlineMacro)
     this.inlineMacro('enemy', enemyInlineMacro)
     this.treeProcessor('combat', combatTreeProcessor)
     this.inlineMacro('choice', choiceInlineMacro)
+    this.blockMacro("dicetable", dicetableBlockMacro)
     this.treeProcessor(segmentTreeProcessor)
     this.treeProcessor(choicesTreeProcessor)
     this.treeProcessor(shuffleTreeProcessor)

@@ -1,0 +1,26 @@
+table.dicetable {
+    border-collapse: collapse;
+}
+
+table.dicetable.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.dicetable td {
+    border: 1px solid black;
+    vertical-align: middle;
+    height: 32px;
+}
+
+table.dicetable tr:nth-child(odd) td:nth-child(odd),
+table.dicetable tr:nth-child(even) td:nth-child(even) {
+    background-color: #E9E9E9;
+}
+
+table.dicetable td p {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    width: 32px;
+}

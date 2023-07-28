@@ -1,0 +1,8 @@
+= Dice Table
+:doctype: book
+
+== Introduction
+
+Look what's on the table, it's a grid of dice!
+
+dicetable::100[]
