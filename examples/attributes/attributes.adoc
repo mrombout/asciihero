@@ -1,0 +1,22 @@
+= Attributes
+:doctype: book
+:gamebook-combat-attributes: strength, dexterity
+
+== Introduction
+
+Asciihero has a notation of attributes.
+You can declare them at the top of your document using the `:gamebook-combat-attributes:` (AsciiDoc) attribute.
+Then they can be used one two ways.
+
+=== Combat
+
+You can declare these attributes for monsters in combat blocks.
+
+[combat]
+* enemy:Goblin[strength=12, dexterity=10]
+* enemy:Goblin[strength=4, dexterity=3]
+
+=== Reference
+
+Or you can reference them in text.
+For example, increase to tell players to decrease their attr:dexterity[] untill they have left the swamp.

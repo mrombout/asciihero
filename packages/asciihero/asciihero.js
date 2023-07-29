@@ -255,6 +255,17 @@ function dicetableBlockMacro() {
   })
 }
 
+// attrInlineMacro processes the `attr:<attr>[]` macro and renders an in-line
+// reference to an attribute.
+function attrInlineMacro () {
+  const self = this
+
+  self.process(function (parent, target, attrs) {
+    return self.createInline(parent, 'quoted', `<span class="attribute">${target}</span>`)
+  })
+}
+
+
 module.exports.register = function (registry) {
   registry.register(function () {
     this.inlineMacro('turn', turnInlineMacro)
@@ -262,6 +273,7 @@ module.exports.register = function (registry) {
     this.treeProcessor('combat', combatTreeProcessor)
     this.inlineMacro('choice', choiceInlineMacro)
     this.blockMacro("dicetable", dicetableBlockMacro)
+    this.inlineMacro('attr', attrInlineMacro)
     this.treeProcessor(segmentTreeProcessor)
     this.treeProcessor(choicesTreeProcessor)
     this.treeProcessor(shuffleTreeProcessor)
