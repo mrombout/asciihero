@@ -383,6 +383,8 @@ But due to the way the final output formats work, each format has their own set 
 Other than that, templates work the same as they do for link:https://docs.asciidoctor.org/asciidoctor.js/latest/[Asciidoctor.js].
 See link:https://docs.asciidoctor.org/asciidoctor.js/latest/extend/converter/template-converter/[Template Converter] on the link:https://docs.asciidoctor.org/asciidoctor.js/latest/[Asciidoctor.js] documentation for more information.
 
+If you're not familiar with CSS for printed media you might want to refer to https://pagedjs.org/documentation/[paged.js] and https://www.smashingmagazine.com/2015/01/designing-for-print-with-css/[Designing For Print With CSS] by Rachel Andrew.
+
 == Workflow
 
 TODO: Explain how to set up VSCode for authoring gamebooks with the `asciihero` CLI.
