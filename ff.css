@@ -30,12 +30,12 @@
 
 @page gameplay :right {
   @top-right {
-    content: string(title, first) "-" string(title, last);
+    content: string(segmentTitle, first) "-" string(segmentTitle, last);
   }
 }
 @page gameplay :left {
   @top-left {
-    content: string(title, first) "-" string(title, last);
+    content: string(segmentTitle, first) "-" string(segmentTitle, last);
   }
 }
 
@@ -99,7 +99,7 @@ h3 + div p {
 .segment h3 {
   text-align: center;
   margin: 0;
-  string-set: title content(text);
+  string-set: segmentTitle content(text);
 }
 
 .segment img {
