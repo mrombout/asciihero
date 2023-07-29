@@ -159,7 +159,7 @@ table.combat tr:first-child {
   display: none;
 }
 
-/* TODO: This should be dynamic based on gamebook-combat-attributes document attribute. */
+/* TODO: This should be dynamic based on asciihero-combat-attributes document attribute. */
 table.combat tr td:nth-child(2) p::before,
 table.combat tr td:nth-child(3) p::before {
   font-family: 'Spectral', serif;

@@ -215,7 +215,7 @@ WARNING: Only `enemy:[]` macro list items are valid in `[combat]` lists. AsciiHe
 [source,asciidoc]
 ----
 = My Gamebook
-:gamebook-combat-attributes: strength, dexterity <1>
+:asciihero-combat-attributes: strength, dexterity <1>
 
 [combat] <2>
 * enemy:Goblin[strength=12, dexterity=10] <3>
@@ -449,7 +449,7 @@ If you are new to both, it's recommended to use the link:https://docs.asciidocto
 |===
 |Name |Allowable Values |Modifiable |API/CLI Only |Notes
 
-|`gamebook-combat-attributes`
+|`asciihero-combat-attributes`
 | _comma-separated list of attributes_
 | Yes
 | No

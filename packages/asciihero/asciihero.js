@@ -62,7 +62,7 @@ function combatTreeProcessor () {
     for (const combatNodeIndex in combatNodes) {
       const combatNode = combatNodes[combatNodeIndex]
 
-      const attributes = doc.getAttribute('gamebook-combat-attributes').split(',').map(x => x.trim())
+      const attributes = doc.getAttribute('asciihero-combat-attributes').split(',').map(x => x.trim())
 
       let content = `[.combat]\n`
       content += `[cols="${Array(attributes.length + 1).fill('1').join(',')}"]\n`

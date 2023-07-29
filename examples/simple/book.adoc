@@ -1,6 +1,6 @@
 = Simple: An Excellent Beginning
 :doctype: book
-:gamebook-combat-attributes: strength, dexterity
+:asciihero-combat-attributes: strength, dexterity
 
 == Introduction
 

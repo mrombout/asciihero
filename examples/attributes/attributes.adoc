@@ -1,11 +1,11 @@
 = Attributes
 :doctype: book
-:gamebook-combat-attributes: strength, dexterity
+:asciihero-combat-attributes: strength, dexterity
 
 == Introduction
 
 Asciihero has a notation of attributes.
-You can declare them at the top of your document using the `:gamebook-combat-attributes:` (AsciiDoc) attribute.
+You can declare them at the top of your document using the `:asciihero-combat-attributes:` (AsciiDoc) attribute.
 Then they can be used one two ways.
 
 === Combat
