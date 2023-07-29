@@ -1,0 +1,59 @@
+= Shuffle
+:doctype: book
+:asciihero-shuffle-style: random
+:asciihero-shuffle-seed: 1234
+
+== Introduction
+
+Asciihero can shuffle all segments to appear in a random order if you set the
+`:asciihero-shuffle-style:` document attribute to `random`.
+
+If you want the segments to be random, i.e. shuffled but always the same each time you render the document you must set the `:asciihero-shuffle-seed:` attribute to anything.
+Asciihero will then use that seed every time it generates a random number for shuffling.
+
+[.gameplay]
+== Gameplay
+
+[segment]
+=== segment_1
+
+Segment 1
+
+[segment]
+=== segment_2
+
+Segment 2
+
+[segment]
+=== segment_3
+
+Segment 3
+
+[segment]
+=== segment_4
+
+Segment 4
+
+[segment]
+=== segment_5
+
+Segment 5
+
+[segment]
+=== segment_6
+
+Segment 6
+
+[segment]
+=== segment_7
+
+Segment 7
+
+[segment]
+=== segment_8
+
+Segment 8
+
+== The End
+
+TODO

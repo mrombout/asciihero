@@ -1,6 +1,8 @@
+var seedrandom = require('seedrandom');
+
 // segmentTreeProcessor processes all sections with the `segment` style by
 // assigning them the right IDs and seting a numeric title.
-function segmentTreeProcessor () {
+function segmentTreeProcessor() {
   const self = this
 
   self.process(function (doc) {
@@ -22,7 +24,7 @@ function segmentTreeProcessor () {
 }
 
 // turnInlineMacro processes the `turn:<target>[]` marge and turns them into cross-references.
-function turnInlineMacro () {
+function turnInlineMacro() {
   const self = this
 
   self.process(function (parent, target, attrs) {
@@ -37,7 +39,7 @@ function turnInlineMacro () {
 
 // enemyInlineMacro processes the `enemy:<name>[attrs]` macro and turns them into invisible data
 // elements to be used by the `combatTreeProcessor.`
-function enemyInlineMacro () {
+function enemyInlineMacro() {
   const self = this
 
   self.process(function (parent, target, attrs) {
@@ -53,7 +55,7 @@ function enemyInlineMacro () {
 
 // combatTreeProcessor processes unordered lists with the `combat` style and
 // renders a table with the enemy data.
-function combatTreeProcessor () {
+function combatTreeProcessor() {
   const self = this
 
   self.process(function (doc) {
@@ -99,18 +101,18 @@ function combatTreeProcessor () {
 
 // choiceInlineMacro processes `choice:<segment_id>[]` macro and turns them into
 // invisible data elements to be used by the `choicesTreeProcessor`.
-function choiceInlineMacro () {
+function choiceInlineMacro() {
   const self = this
 
   self.positionalAttributes(['text'])
   self.process(function (parent, target, attrs) {
-    return self.createInline(parent, 'quoted', attrs.text, { })
+    return self.createInline(parent, 'quoted', attrs.text, {})
   })
 }
 
 // choicesTreeProcessor processes unordered lists with the `choices` style and
 // renders a table with the choices data.
-function choicesTreeProcessor () {
+function choicesTreeProcessor() {
   const self = this
 
   self.process(function (doc) {
@@ -157,17 +159,17 @@ function choicesTreeProcessor () {
 //
 // At the moment only `random` is supported, which shuffled all segments
 // randomly.
-function shuffleTreeProcessor () {
+function shuffleTreeProcessor() {
   const self = this
 
-  const shuffle = function (array) {
+  const shuffle = function (rng, array) {
     let currentIndex = array.length
     let randomIndex
 
     // While there remain elements to shuffle.
     while (currentIndex !== 0) {
       // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex)
+      randomIndex = Math.floor(rng() * currentIndex)
       currentIndex--;
 
       // And swap it with the current element.
@@ -181,6 +183,9 @@ function shuffleTreeProcessor () {
     if (doc.getAttribute('asciihero-shuffle-style') !== 'random') {
       return
     }
+
+    const seed = doc.getAttribute('asciihero-shuffle-seed', null);
+    const rng = seedrandom(seed);
 
     // shuffle all nodes
     const gameplayNodes = doc.findBy({ role: 'gameplay' })
@@ -198,7 +203,7 @@ function shuffleTreeProcessor () {
         const firstOne = segmentNode.parent.blocks[0]
         const lastOne = segmentNode.parent.blocks[blocksLenth - 1]
 
-        shuffle(segmentNode.parent.blocks)
+        shuffle(rng, segmentNode.parent.blocks);
 
         const firstIndex = segmentNode.parent.blocks.indexOf(firstOne)
         const otherValue1 = segmentNode.parent.blocks[0]
@@ -232,13 +237,13 @@ function shuffleTreeProcessor () {
 // alternative to dice.
 function dicetableBlockMacro() {
   var self = this;
-  self.process(function(parent, target, attrs) {
+  self.process(function (parent, target, attrs) {
     let numNumbers = parseInt(target, 10)
     let numbers = Array(numNumbers)
       .fill()
       .map((e, i) => i + 1)
       .sort(() => (Math.random() > .5) ? 1 : -1);
-    
+
     let tableSize = Math.ceil(Math.sqrt(numNumbers))
 
     let content = `[.dicetable.center]\n`;
@@ -246,7 +251,7 @@ function dicetableBlockMacro() {
     content += `|===\n`
     for (let i = 0; i < tableSize; i++) {
       for (let j = 0; j < tableSize; j++) {
-        const numberIndex = i*tableSize+j;
+        const numberIndex = i * tableSize + j;
         content += `|${numbers[numberIndex]}\n`;
       }
     }
@@ -257,7 +262,7 @@ function dicetableBlockMacro() {
 
 // attrInlineMacro processes the `attr:<attr>[]` macro and renders an in-line
 // reference to an attribute.
-function attrInlineMacro () {
+function attrInlineMacro() {
   const self = this
 
   self.process(function (parent, target, attrs) {
