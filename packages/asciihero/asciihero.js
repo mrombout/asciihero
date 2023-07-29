@@ -153,7 +153,7 @@ function choicesTreeProcessor () {
 }
 
 // shuffleTreeProcessor shuffles all segments according to the
-// `gamebook-shuffle-style`.
+// `asciihero-shuffle-style`.
 //
 // At the moment only `random` is supported, which shuffled all segments
 // randomly.
@@ -178,7 +178,7 @@ function shuffleTreeProcessor () {
   }
 
   self.process(function (doc) {
-    if (doc.getAttribute('gamebook-shuffle-style') !== 'random') {
+    if (doc.getAttribute('asciihero-shuffle-style') !== 'random') {
       return
     }
 

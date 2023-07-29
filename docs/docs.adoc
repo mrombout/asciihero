@@ -236,12 +236,12 @@ TODO: Show how the combat list is rendered.
 === Shuffling
 
 AsciiHero can automatically shuffle segments for you so that reader are less likely to accidentally (or purposely) catch a glimpse of related future outcomes.
-You can choose how AsciiDoc does this by setting the `:gamebook-shuffle-style:` attribute at the top of you document, or by supplying it using the CLI.
+You can choose how AsciiDoc does this by setting the `:asciihero-shuffle-style:` attribute at the top of you document, or by supplying it using the CLI.
 
 [source,asciidoc]
 ----
 = My Gamebook
-:gamebook-shuffle-style: random
+:asciihero-shuffle-style: random
 ----
 
 The following shuffling styles are available:
@@ -263,7 +263,7 @@ The following shuffling styles are available:
 [source,asciidoc]
 ----
 = My Gamebook
-:gamebook-shuffle-style: none
+:asciihero-shuffle-style: none
 ----
 
 In this case AsciiHero will leave all your segments exactly where they are.
@@ -275,7 +275,7 @@ This gives you the freedom to lay out the segments exactly how you want.
 [source,asciidoc]
 ----
 = My Gamebook
-:gamebook-shuffle-style: random
+:asciihero-shuffle-style: random
 ----
 
 This is the default shuffling option.
