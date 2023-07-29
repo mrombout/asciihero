@@ -42,9 +42,15 @@ function turnInlineMacro() {
 function enemyInlineMacro() {
   const self = this
 
-  self.process(function (parent, target, attrs) {
+  self.process(function (parent, target, attrs) {  
+    let name = target;
+    if(attrs.hasOwnProperty('name')) {
+      name = attrs.name;
+      delete attrs.name;
+    }
+
     const object = {
-      name: target,
+      name: name,
       attributes: attrs
     }
     const content = JSON.stringify(object)
@@ -80,16 +86,21 @@ function combatTreeProcessor() {
 
       for (const childBlockIndex in combatNode.blocks) {
         const childBlock = combatNode.blocks[childBlockIndex]
-
         const rawContent = childBlock.getText()
-        const jsonContent = JSON.parse(rawContent)
 
-        content += `|${jsonContent.name}\n`
-        for (const attribute in jsonContent.attributes) {
-          const value = jsonContent.attributes[attribute]
-          content += `| ${value}\n`
-        }
+        try {
+          const jsonContent = JSON.parse(rawContent)
+
+          content += `|${jsonContent.name}\n`
+          for (const attribute in jsonContent.attributes) {
+            const value = jsonContent.attributes[attribute]
+            content += `| ${value}\n`
+          }
+        } catch(e) {
+          doc.getLogger().warn(`invalid enemy entry in combat block: ${e.message}`)
+        } 
       }
+      
       content += '|===\n'
       self.parseContent(combatNode.parent, content)
 
@@ -97,6 +108,7 @@ function combatTreeProcessor() {
       combatNode.parent.blocks.splice(nodeIndex, 1)
     }
   })
+
 }
 
 // choiceInlineMacro processes `choice:<segment_id>[]` macro and turns them into

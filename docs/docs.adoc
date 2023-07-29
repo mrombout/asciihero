@@ -476,7 +476,7 @@ If you are new to both, it's recommended to use the link:https://docs.asciidocto
 | `inline`
 |Renders a cross-reference link to the segment referenced to with `<id`> and replaces the text with that segment's number.
 
-| `enemy:<name>[[<attribute_id>=<attribute_value>]...]`
+| `enemy:<name>[[name=<name>,][<attribute_id>=<attribute_value>]...]`
 | `inline`
 | Creates an enemy inside a combat list. It must be used together with a unordered list styled with `[combat]`. See <<combat>> for more information.
 

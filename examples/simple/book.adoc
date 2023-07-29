@@ -48,7 +48,8 @@ In Asciidoc you can easily include a combat block using an unordered list with t
 
 [combat]
 * enemy:Goblin[strength=12, dexterity=10]
-* enemy:Goblin[strength=4, dexterity=3]
+* enemy:Evil Goblin[strength=12, dexterity=10]
+* enemy:Goblin[name=Evil Goblin, strength=4, dexterity=3]
 
 If you win, turn:game_over[].
 
