@@ -1,8 +1,8 @@
-var seedrandom = require('seedrandom');
+const seedrandom = require('seedrandom')
 
 // segmentTreeProcessor processes all sections with the `segment` style by
 // assigning them the right IDs and seting a numeric title.
-function segmentTreeProcessor() {
+function segmentTreeProcessor () {
   const self = this
 
   self.process(function (doc) {
@@ -24,7 +24,7 @@ function segmentTreeProcessor() {
 }
 
 // turnInlineMacro processes the `turn:<target>[]` marge and turns them into cross-references.
-function turnInlineMacro() {
+function turnInlineMacro () {
   const self = this
 
   self.process(function (parent, target, attrs) {
@@ -39,10 +39,10 @@ function turnInlineMacro() {
 
 // enemyInlineMacro processes the `enemy:<name>[attrs]` macro and turns them into invisible data
 // elements to be used by the `combatTreeProcessor.`
-function enemyInlineMacro() {
+function enemyInlineMacro () {
   const self = this
 
-  self.process(function (parent, target, attrs) {  
+  self.process(function (parent, target, attrs) {
     let name = target;
     if(attrs.hasOwnProperty('name')) {
       name = attrs.name;
