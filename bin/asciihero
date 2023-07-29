@@ -45,15 +45,15 @@ class AsciiHeroInvoker extends Invoker {
     }
 
     const asciidoctorOptions = cliOptions.options
-    const stylesheetBase = path.resolve(__dirname, `../base.css`)
-    const stylesheetFightingFantasy = path.resolve(__dirname, `../ff.css`)
+    const stylesheetBase = path.resolve(__dirname, '../base.css')
+    const stylesheetFightingFantasy = path.resolve(__dirname, '../ff.css')
     cliOptions.attributes.push(`stylesheet=${stylesheetBase},${stylesheetFightingFantasy}`)
 
-    let templates = require('asciidoctor-pdf/lib/document/document-converter.js').templates
+    const templates = require('asciidoctor-pdf/lib/document/document-converter.js').templates
     converter.registerTemplateConverter(processor, templates)
 
     extensions.register(processor.Extensions)
-    
+
     Invoker.prepareProcessor(args, processor)
     if (files && files.length > 0) {
       const fileObjects = files.map(file => ({ path: file }))

@@ -43,14 +43,14 @@ function enemyInlineMacro () {
   const self = this
 
   self.process(function (parent, target, attrs) {
-    let name = target;
-    if(attrs.hasOwnProperty('name')) {
-      name = attrs.name;
-      delete attrs.name;
+    let name = target
+    if (Object.hasOwn(attrs, 'name')) {
+      name = attrs.name
+      delete attrs.name
     }
 
     const object = {
-      name: name,
+      name,
       attributes: attrs
     }
     const content = JSON.stringify(object)
@@ -61,7 +61,7 @@ function enemyInlineMacro () {
 
 // combatTreeProcessor processes unordered lists with the `combat` style and
 // renders a table with the enemy data.
-function combatTreeProcessor() {
+function combatTreeProcessor () {
   const self = this
 
   self.process(function (doc) {
@@ -72,7 +72,7 @@ function combatTreeProcessor() {
 
       const attributes = doc.getAttribute('asciihero-combat-attributes').split(',').map(x => x.trim())
 
-      let content = `[.combat]\n`
+      let content = '[.combat]\n'
       content += `[cols="${Array(attributes.length + 1).fill('1').join(',')}"]\n`
       content += '|===\n'
 
@@ -96,11 +96,11 @@ function combatTreeProcessor() {
             const value = jsonContent.attributes[attribute]
             content += `| ${value}\n`
           }
-        } catch(e) {
+        } catch (e) {
           doc.getLogger().warn(`invalid enemy entry in combat block: ${e.message}`)
-        } 
+        }
       }
-      
+
       content += '|===\n'
       self.parseContent(combatNode.parent, content)
 
@@ -108,12 +108,11 @@ function combatTreeProcessor() {
       combatNode.parent.blocks.splice(nodeIndex, 1)
     }
   })
-
 }
 
 // choiceInlineMacro processes `choice:<segment_id>[]` macro and turns them into
 // invisible data elements to be used by the `choicesTreeProcessor`.
-function choiceInlineMacro() {
+function choiceInlineMacro () {
   const self = this
 
   self.positionalAttributes(['text'])
@@ -124,7 +123,7 @@ function choiceInlineMacro() {
 
 // choicesTreeProcessor processes unordered lists with the `choices` style and
 // renders a table with the choices data.
-function choicesTreeProcessor() {
+function choicesTreeProcessor () {
   const self = this
 
   self.process(function (doc) {
@@ -171,7 +170,7 @@ function choicesTreeProcessor() {
 //
 // At the moment only `random` is supported, which shuffled all segments
 // randomly.
-function shuffleTreeProcessor() {
+function shuffleTreeProcessor () {
   const self = this
 
   const shuffle = function (rng, array) {
@@ -196,8 +195,8 @@ function shuffleTreeProcessor() {
       return
     }
 
-    const seed = doc.getAttribute('asciihero-shuffle-seed', null);
-    const rng = seedrandom(seed);
+    const seed = doc.getAttribute('asciihero-shuffle-seed', null)
+    const rng = seedrandom(seed)
 
     // shuffle all nodes
     const gameplayNodes = doc.findBy({ role: 'gameplay' })
@@ -215,7 +214,7 @@ function shuffleTreeProcessor() {
         const firstOne = segmentNode.parent.blocks[0]
         const lastOne = segmentNode.parent.blocks[blocksLenth - 1]
 
-        shuffle(rng, segmentNode.parent.blocks);
+        shuffle(rng, segmentNode.parent.blocks)
 
         const firstIndex = segmentNode.parent.blocks.indexOf(firstOne)
         const otherValue1 = segmentNode.parent.blocks[0]
@@ -247,34 +246,34 @@ function shuffleTreeProcessor() {
 // dicetableBlockMacro processes the `dicetable:<size>[]` macro and renders a
 // table with random numbers. It is intended to be used by the reader as an
 // alternative to dice.
-function dicetableBlockMacro() {
-  var self = this;
+function dicetableBlockMacro () {
+  const self = this
   self.process(function (parent, target, attrs) {
-    let numNumbers = parseInt(target, 10)
-    let numbers = Array(numNumbers)
+    const numNumbers = parseInt(target, 10)
+    const numbers = Array(numNumbers)
       .fill()
       .map((e, i) => i + 1)
-      .sort(() => (Math.random() > .5) ? 1 : -1);
+      .sort(() => (Math.random() > 0.5) ? 1 : -1)
 
-    let tableSize = Math.ceil(Math.sqrt(numNumbers))
+    const tableSize = Math.ceil(Math.sqrt(numNumbers))
 
-    let content = `[.dicetable.center]\n`;
-    content += `[cols="${Array(tableSize).fill('1').join(',')}"]\n`;
-    content += `|===\n`
+    let content = '[.dicetable.center]\n'
+    content += `[cols="${Array(tableSize).fill('1').join(',')}"]\n`
+    content += '|===\n'
     for (let i = 0; i < tableSize; i++) {
       for (let j = 0; j < tableSize; j++) {
-        const numberIndex = i * tableSize + j;
-        content += `|${numbers[numberIndex]}\n`;
+        const numberIndex = i * tableSize + j
+        content += `|${numbers[numberIndex]}\n`
       }
     }
-    content += `|===`
+    content += '|==='
     self.parseContent(parent, content)
   })
 }
 
 // attrInlineMacro processes the `attr:<attr>[]` macro and renders an in-line
 // reference to an attribute.
-function attrInlineMacro() {
+function attrInlineMacro () {
   const self = this
 
   self.process(function (parent, target, attrs) {
@@ -282,14 +281,13 @@ function attrInlineMacro() {
   })
 }
 
-
 module.exports.register = function (registry) {
   registry.register(function () {
     this.inlineMacro('turn', turnInlineMacro)
     this.inlineMacro('enemy', enemyInlineMacro)
     this.treeProcessor('combat', combatTreeProcessor)
     this.inlineMacro('choice', choiceInlineMacro)
-    this.blockMacro("dicetable", dicetableBlockMacro)
+    this.blockMacro('dicetable', dicetableBlockMacro)
     this.inlineMacro('attr', attrInlineMacro)
     this.treeProcessor(segmentTreeProcessor)
     this.treeProcessor(choicesTreeProcessor)
