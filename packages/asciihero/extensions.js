@@ -29,8 +29,16 @@ function turnInlineMacro () {
 
   self.process(function (parent, target, attrs) {
     const referencedSegment = parent.document.findBy({ id: target })
+    if (referencedSegment.length === 0) {
+      parent.getLogger().warn(`segment '${target}' does not exist`)
+      return self.createInline(parent, 'quoted', `xref:${target}[${target}]`, { type: 'strong' })
+    }
 
     const segment = referencedSegment[0]
+    if (!segment.hasRole('segment')) {
+      parent.getLogger().warn(`section '${target}' is not a segment`)
+    }
+
     const title = segment.getTitle()
 
     return self.createInline(parent, 'quoted', `xref:${target}[${title}]`, { type: 'strong' })

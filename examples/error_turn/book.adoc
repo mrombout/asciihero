@@ -1,0 +1,19 @@
+= Turn Error
+
+[.gameplay]
+== And so it begins...
+
+[segment]
+=== segment_one
+
+When you link to a segment that doesn't exist Asciihero will tell you with a `WARNING` (turn to turn:segment_three[]).
+
+[segment]
+=== segment_two
+
+It will also warn you if your link to a segment that isn't a segment (turn to turn:segment_four[]).
+
+[#segment_four]
+=== segment_four
+
+This is not a segment.
