@@ -41,7 +41,7 @@ function turnInlineMacro () {
 
     const title = segment.getTitle()
 
-    return self.createInline(parent, 'quoted', `xref:${target}[${title}]`, { type: 'strong' })
+    return self.createInline(parent, 'quoted', `xref:${target}[${title},role=turn]`, { type: 'strong' })
   })
 }
 

@@ -8,7 +8,6 @@ module.exports = class GamebookConverter {
       </gamebook>`
     }
     if (nodeName === 'section') {
-      console.log(node.getRoles())
       if (node.hasRole('segment')) {
         return `<segment id="${node.getTitle()}">
           ${node.getContent()}
@@ -24,7 +23,13 @@ module.exports = class GamebookConverter {
       return node.getText()
     }
     if (nodeName === 'inline_anchor') {
-      return node.getText()
+      const target = node.getTarget().substring(1)
+      const targetNodes = node.getDocument().findBy({ id: target })
+      if (targetNodes.length === 0) {
+        return '<choice segment="invalid" />'
+      }
+
+      return `<choice segment="${targetNodes[0].getTitle()}" />`
     }
     if (nodeName === 'paragraph') {
       return `<text>
@@ -46,7 +51,7 @@ module.exports = class GamebookConverter {
 
         node.getRows().getBody().forEach((i) => {
           const text = i[0].getContent()
-          const segmentId = i[2].getContent()
+          const segmentId = i[2].getText().substring('<choice segment="'.length, i[2].getText().length - '" />'.length) // TODO: Remove ugly hack, find better way to get segmentId
           content += `<choice segment="${segmentId}">${text}</choice>\n`
         })
 
@@ -65,7 +70,6 @@ module.exports = class GamebookConverter {
     // console.log(`transform: ${transform}`)
     // console.log(`opts: ${opts}`)
     // return node.getContent()
-    console.log(`nodeName: ${nodeName}`)
     return 'BLA'
   }
 }
