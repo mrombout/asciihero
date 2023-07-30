@@ -157,6 +157,10 @@ function choicesTreeProcessor () {
 
         const regex = /choice:([a-z0-9_]+)/g
         const matches = regex.exec(choice.text)
+        if (matches === null) {
+          doc.getLogger().warn(`choice '${choice.text}' is not valid`)
+          continue
+        }
         const targetLink = matches[1]
 
         content += `| ${choice.text}\n`
