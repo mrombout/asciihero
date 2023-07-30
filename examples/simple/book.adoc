@@ -36,6 +36,10 @@ The `turn:[]` macro is great if you want to embed the segment number into a sent
 But sometimes you want to show multiple choices in a more consistent manner.
 You can use an unordered list with the `[choices]` style for that.
 
+* A
+* B
+* C
+
 [choices]
 * choice:entrance_hall[North?]
 * choice:combat[South?]

@@ -407,7 +407,7 @@ CAUTION: This workflow has not been tested yet.
 The workflow that requires very little setup is the `CLI` workflow.
 In this workflow you can use your favourite text editor, and the CLI will automatically export you gamebook every time it detects a change.
 
-Simple run the following:
+Simply run the following:
 
 [source,console]
 $ asciihero --watch gamebook.adoc
@@ -434,6 +434,20 @@ In this mode, AsciiHero will use the PDF debug output format which should give a
 // TODO: Actually supply proper command.
 
 NOTE: You are not limited to VSCode. Any text-editor that has support for Asciidoctor.js and extensions can be used. See link:https://docs.asciidoctor.org/asciidoctor/latest/tooling/[AsciiDoc Tooling] for some inspiration.
+
+== GamebookML
+
+AsciiHero as rudimentary support for exporting to `GamebookML` using the `gamebookml` backend.
+This support is primarily intended to use its analytics tooling like finding the shorting path and simulation.
+
+Simply run the following:
+
+[source,console]
+----
+$ asciihero --backend gamebookml ./examples/simple/book.adoc -o examples/simple/gamebook.xml
+----
+
+AsciiHero will write a `.xml` in `GamebookML` format to `examples/simple/gamebook.xml` which you can then further process using `GamebookML` tooling.
 
 == Reference
 
