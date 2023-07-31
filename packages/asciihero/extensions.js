@@ -28,10 +28,14 @@ function turnInlineMacro () {
   const self = this
 
   self.process(function (parent, target, attrs) {
+    let title = `${target}`
     const referencedSegment = parent.document.findBy({ id: target })
-
-    const segment = referencedSegment[0]
-    const title = segment.getTitle()
+    if (referencedSegment.length > 0) {
+      const segment = referencedSegment[0]
+      title = segment.getTitle()
+    } else {
+      parent.getLogger().warn(`invalid turn to '${target}'`)
+    }
 
     return self.createInline(parent, 'quoted', `xref:${target}[${title}]`, { type: 'strong' })
   })
