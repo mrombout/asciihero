@@ -53,7 +53,7 @@ function processSegmentNodes (doc) {
   }
 }
 
-// turnInlineMacro processes the `turn:<target>[]` marge and turns them into cross-references.
+// turnInlineMacro processes the `turn:<target>[]` macro and turns them into cross-references.
 function turnInlineMacro () {
   const self = this
 
@@ -68,6 +68,30 @@ function turnInlineMacro () {
     }
 
     return self.createInline(parent, 'quoted', `xref:${target}[${title}]`, { type: 'strong' })
+  })
+}
+
+// turnToInlineMacro processes the `turnto:<target>[]` macro and turns them into cross-references.
+function turnToInlineMacro () {
+  const self = this
+
+  self.positionalAttributes(['text'])
+  self.process(function (parent, target, attrs) {
+    let title = `${target}`
+    const referencedSegment = parent.document.findBy({ id: target })
+    if (referencedSegment.length > 0) {
+      const segment = referencedSegment[0]
+      title = segment.getTitle()
+    } else {
+      parent.getLogger().warn(`invalid turn to '${target}'`)
+    }
+
+    let text = `turn to *xref:${target}[${title}]*`
+    if (Object.hasOwn(attrs, 'text')) {
+      text = `${attrs.text} (${text})`
+    }
+
+    return self.createInlinePass(parent, text, { attributes: { subs: ['normal', 'macros'] } })
   })
 }
 
@@ -279,6 +303,7 @@ function attrInlineMacro () {
 module.exports.register = function (registry) {
   registry.register(function () {
     this.inlineMacro('turn', turnInlineMacro)
+    this.inlineMacro('turnto', turnToInlineMacro)
     this.inlineMacro('enemy', enemyInlineMacro)
     this.treeProcessor('combat', combatTreeProcessor)
     this.inlineMacro('choice', choiceInlineMacro)

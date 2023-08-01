@@ -27,7 +27,9 @@ This allows you to give your segments logical names that you can remember, and A
 
 You can use these segment names with the `turn:[]` macro to automatically place a link with the correct number.
 If you want to learn about choices, turn to turn:choices[].
-If you want to learn about combat, turn to turn:combat[].
+If you want to learn about combat, turnto:combat[].
+
+Or do you want to turnto:combat[fight a monster]?
 
 [.segment]
 === choices
