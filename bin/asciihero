@@ -18,6 +18,29 @@ async function convertFiles (files, argv, options, verbose, preview) {
   }
 }
 
+function buildStylesheetAttribute (cliOptions) {
+  const stylesheetBase = path.resolve(__dirname, '../base.css')
+  const stylesheetFightingFantasy = path.resolve(__dirname, '../ff.css')
+
+  let actualStylesheets = [
+    stylesheetBase,
+    stylesheetFightingFantasy
+  ]
+  cliOptions.attributes
+    .map(a => a.split('='))
+    .filter(a => a[0] === 'stylesheet')
+    .map(a => a[1])
+    .flatMap(a => a.split(','))
+    .forEach((a) => {
+      if (a.startsWith('+')) {
+        actualStylesheets.push(a.slice(1))
+      } else {
+        actualStylesheets = [a]
+      }
+    })
+  return `stylesheet=${actualStylesheets.join(',')}`
+}
+
 class AsciiHeroOptions {
   constructor () {
     this.options = new Options({})
@@ -44,16 +67,15 @@ class AsciiHeroInvoker extends Invoker {
       return { exit: true }
     }
 
-    const asciidoctorOptions = cliOptions.options
-    const stylesheetBase = path.resolve(__dirname, '../base.css')
-    const stylesheetFightingFantasy = path.resolve(__dirname, '../ff.css')
-    cliOptions.attributes.push(`stylesheet=${stylesheetBase},${stylesheetFightingFantasy}`)
+    const stylesheetAttribute = buildStylesheetAttribute(cliOptions)
+    cliOptions.attributes.push(stylesheetAttribute)
 
     const templates = require('asciidoctor-pdf/lib/document/document-converter.js').templates
     converter.registerTemplateConverter(processor, templates)
 
     extensions.register(processor.Extensions)
 
+    const asciidoctorOptions = cliOptions.options
     Invoker.prepareProcessor(args, processor)
     if (files && files.length > 0) {
       const fileObjects = files.map(file => ({ path: file }))
