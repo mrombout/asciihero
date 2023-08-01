@@ -463,6 +463,13 @@ If you are new to both, it's recommended to use the link:https://docs.asciidocto
 |Yes
 |No
 |Algorithm to use when shuffling the segments in the document. See <<shuffling>> for more information.
+
+|`asciihero-segment-title`
+|`title` +
+`number`
+| Yes
+| No
+| Sets whether to show segment as titles (for debugging), or number (default).
 |===
 
 [#macros]

@@ -38,7 +38,17 @@ function processSegmentNodes (doc) {
     }
 
     node.setAttribute('segmentNumber', actualSectionIndex)
-    node.setTitle(`${actualSectionIndex}`)
+
+    const segmentTitleStrategy = doc.getAttribute('asciihero-segment-title', 'number')
+    switch (segmentTitleStrategy) {
+      case 'number':
+        node.setTitle(`${actualSectionIndex}`)
+        break
+      case 'title':
+        break
+        // nothing to do
+    }
+
     node.addRole('segment')
   }
 }
