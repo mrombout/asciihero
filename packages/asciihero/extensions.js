@@ -6,9 +6,7 @@ function segmentTreeProcessor () {
   const self = this
 
   self.process(function (doc) {
-    const segmentNodes = doc.findBy({ context: 'section' }, function (section) {
-      return section.sectname === 'segment'
-    })
+    const segmentNodes = doc.findBy({ role: 'segment' })
 
     let sectionIndex = 1
     for (const index in segmentNodes) {
@@ -177,21 +175,8 @@ function choicesTreeProcessor () {
 function shuffleTreeProcessor () {
   const self = this
 
-  const shuffle = function (rng, array) {
-    let currentIndex = array.length
-    let randomIndex
-
-    // While there remain elements to shuffle.
-    while (currentIndex !== 0) {
-      // Pick a remaining element.
-      randomIndex = Math.floor(rng() * currentIndex)
-      currentIndex--;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
-    }
-
-    return array
+  const swap = (arr, a, b) => {
+    [arr[a], arr[b]] = [arr[b], arr[a]]
   }
 
   self.process(function (doc) {
@@ -204,29 +189,16 @@ function shuffleTreeProcessor () {
 
     // shuffle all nodes
     const gameplayNodes = doc.findBy({ role: 'gameplay' })
-    for (const gameplayNodeIndex in gameplayNodes) {
-      const gameplayNode = gameplayNodes[gameplayNodeIndex]
+    for (const gameplayNode of gameplayNodes) {
+      const unstableSegmentNodes = gameplayNode.getBlocks()
+        .map((node, index) => ({ node, index }))
+        .filter(({ node }) => node.hasRole('segment'))
+        .filter(({ node }) => !node.hasRole('stable'))
 
-      const segmentNodes = gameplayNode.findBy({ role: 'segment' })
-      for (const segmentNodeIndex in segmentNodes) {
-        const segmentNode = segmentNodes[segmentNodeIndex]
-
-        const blocksLenth = segmentNode.parent.blocks.length
-        const firstOne = segmentNode.parent.blocks[0]
-        const lastOne = segmentNode.parent.blocks[blocksLenth - 1]
-
-        shuffle(rng, segmentNode.parent.blocks)
-
-        const firstIndex = segmentNode.parent.blocks.indexOf(firstOne)
-        const otherValue1 = segmentNode.parent.blocks[0]
-        segmentNode.parent.blocks[0] = firstOne
-        segmentNode.parent.blocks[firstIndex] = otherValue1
-
-        const lastIndex = segmentNode.parent.blocks.indexOf(lastOne)
-        const otherValue2 = segmentNode.parent.blocks[blocksLenth - 1]
-        segmentNode.parent.blocks[blocksLenth - 1] = lastOne
-        segmentNode.parent.blocks[lastIndex] = otherValue2
-      }
+      unstableSegmentNodes.forEach(({ index }) => {
+        const randomTarget = unstableSegmentNodes[Math.floor(rng() * unstableSegmentNodes.length)]
+        swap(gameplayNode.blocks, index, randomTarget.index)
+      })
     }
 
     // re-assign all titles to be in order
