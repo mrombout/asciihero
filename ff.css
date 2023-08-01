@@ -60,13 +60,12 @@ h1 {
   font-family: 'Pirata One', cursive !important;
   font-size: 5em;
   text-align: center;
-  break-after: always;
 }
 
-h2,
+.content h2,
 #toctitle {
   margin-top: 0;
-  break-before: avoid-page;
+  break-before: page;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-align: center;
