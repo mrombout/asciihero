@@ -110,10 +110,43 @@ h3 + div p {
   string-set: segmentTitle content(text);
 }
 
-.segment img {
+/*******************************************************************************
+ * Paged Image
+ * NOTE: Very ugly hack, probably broken in many scenarios. Fix me.
+ ******************************************************************************/
+.imageblock.text-center {
+  text-align: center;
+}
+
+.imageblock.page-image {
+  page: imagepage;
   break-before: always;
   break-after: always;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+.imageblock.page-image .content,
+.imageblock.page-image .title {
+  height: auto !important;
+}
+
+.imageblock.page-image .title {
+  text-align: left;
+  align-self: flex-start;
+}
+
+/* NOTE: Is it okay to use this? */
+.pagedjs_imagepage_page .pagedjs_page_content div {
+  height: 100%;
+}
+
+@page imagepage {
+  height: auto;
+  height: 100%;
+}
+/******************************************************************************/
 
 .sect2.segment {
   break-inside: avoid;
