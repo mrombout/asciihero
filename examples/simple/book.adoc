@@ -52,6 +52,24 @@ In Asciidoc you can easily include a combat block using an unordered list with t
 
 If you win, turn:game_over[].
 
+=== rolls
+
+You look in the well and see something, you reach for it and grab the item.
+
+Roll a `d6`, this determines the item that you have found.
+
+[cols="1,1"]
+|===
+| d6| Item
+
+| 1-2
+| Rusty dagger
+| 3-4
+| Old boot
+| 5-6
+| 1 gp
+|===
+
 [#game_over]
 == It's all over
 
