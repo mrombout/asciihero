@@ -9,16 +9,16 @@ Any chapters that do not have the `[.gameplay]` role are treated like normal cha
 You can use this to introduce your game world, rules and mechanics.
 
 If you mark a section with the `[.gameplay]` role you tell Asciihero that this is the core of your gamebook.
-Within this section any child with the `[segment]` style will be considered a segment.
+Within this section any child with the `[.segment]` style will be considered a segment.
 A segment is a single numbered part of your gamebook.
 
 [.gameplay]
 == gameplay
 
-[segment]
+[.segment]
 === entrance_hall
 
-In Asciihero segments of a gamebook are regular AsciiDoc section with the `[segment]` style.
+In Asciihero segments of a gamebook are regular AsciiDoc section with the `[.segment]` style.
 This tells Asciihero that this section should be treated as a section and should be processed.
 
 Note how the section in the Asciidoc source is called `entrance_hall`, but the rendered document is shown as "1".
@@ -29,7 +29,7 @@ You can use these segment names with the `turn:[]` macro to automatically place 
 If you want to learn about choices, turn to turn:choices[].
 If you want to learn about combat, turn to turn:combat[].
 
-[segment]
+[.segment]
 === choices
 
 The `turn:[]` macro is great if you want to embed the segment number into a sentence.
@@ -40,7 +40,7 @@ You can use an unordered list with the `[choices]` style for that.
 * choice:entrance_hall[North?]
 * choice:combat[South?]
 
-[segment]
+[.segment]
 === combat
 
 So you want to fight some creatures do you?

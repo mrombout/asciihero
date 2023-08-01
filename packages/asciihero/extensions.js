@@ -207,10 +207,7 @@ function shuffleTreeProcessor () {
     for (const gameplayNodeIndex in gameplayNodes) {
       const gameplayNode = gameplayNodes[gameplayNodeIndex]
 
-      const segmentNodes = gameplayNode.findBy({ context: 'section' }, function (section) {
-        return section.sectname === 'segment'
-      })
-
+      const segmentNodes = gameplayNode.findBy({ role: 'segment' })
       for (const segmentNodeIndex in segmentNodes) {
         const segmentNode = segmentNodes[segmentNodeIndex]
 
@@ -233,9 +230,7 @@ function shuffleTreeProcessor () {
     }
 
     // re-assign all titles to be in order
-    const nodes = doc.findBy({ context: 'section' }, function (section) {
-      return section.sectname === 'segment'
-    })
+    const nodes = doc.findBy({ role: 'segment' })
 
     let sectionIndex = 1
     for (const index in nodes) {

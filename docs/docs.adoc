@@ -15,7 +15,7 @@ The AsciiHero syntax builds on what is already available in AsciiDoc and extends
 An AsciiHero gamebook can be converted to HTML, PDF and EPUB3 based on templates specifically crafted to follow common gamebook typesetting and conventions.
 All you need is a text editor, AsciiHero will do the rest.
 
-Segments:: You can mark sections with the `[segment]` style to render them as numbered sections in your book.
+Segments:: You can mark sections with the `[.segment]` style to render them as numbered sections in your book.
 Choices:: You can mark choices with the `[choices]` style and `choice:<id>[<text>]` to automatically render them in a neat table and link to the correct segments.
 Combat:: You can specify enemies an their attributes and easily use them in combat using a dedicated way of rendering.
 Turn:: Link to segments and automatically replace the link text with the correct segment number.
@@ -122,12 +122,12 @@ A gamebook is often devided in numbered section.
 The player reads one section, and then follows the instructions to turn to the next numbered section.
 In AsciiHero, these are called segments.
 
-Any section can be a segment, all they need is the `[segment]` style in order to be recognized.
-Once you have marked a section as a `[segment]`, several things will happen.
+Any section can be a segment, all they need is the `[.segment]` style in order to be recognized.
+Once you have marked a section as a `[.segment]`, several things will happen.
 
 [source,asciidoc]
 ----
-[segment] <1>
+[.segment] <1>
 === some_id <2>
 You are in a cold and dark cave. From up ahead, you hear the wind howling at you, almost as if to taunt you. What do you do? <3>
 ----
@@ -137,29 +137,29 @@ You are in a cold and dark cave. From up ahead, you hear the wind howling at you
 
 // TODO: Screenshot of output
 
-The major different between a `[segment]` and a normal section is that for segments the title (what you put after `===`) is actually the ID. You can refer to this ID using the `choice:[]` and `turn:[]` macros.
+The major different between a `[.segment]` and a normal section is that for segments the title (what you put after `===`) is actually the ID. You can refer to this ID using the `choice:[]` and `turn:[]` macros.
 When you render your gamebook, the ID will be replaced with a number to help the reader navigate the sections of your adventure.
 
 // TODO: Cross ref the macros
 
 === Turns
 
-Use `turn:<id>[]` to reference a `[segment]`.
-The `<id>` corresponds to the `<id>` (or title) of any `[segment]` you have defined.
+Use `turn:<id>[]` to reference a `[.segment]`.
+The `<id>` corresponds to the `<id>` (or title) of any `[.segment]` you have defined.
 AsciiHero will automatically link it for you and replace the text with the number of the segment.
 
 [source,asciidoc]
 ----
-[segment]
+[.segment]
 === rocky_road
 You hear a faint buzz in the distance. Do you want to investigate, turn to turn:bees[]. Or turn to turn:bandit_road_encounter[] if you'd rather press on.
 
-[segment]
+[.segment]
 === bandit_road_encounter
 
 You press on ahead until you are stopped by a stout, but friendly looking fellow.
 
-[segment]
+[.segment]
 === bees
 
 OH, NO, NOT THE BEES! NOT THE BEES! AAAAAHHHHH! OH, THEY'RE IN MY EYES! MY EYES! AAAAHHHHH! AAAAAGGHHH!
