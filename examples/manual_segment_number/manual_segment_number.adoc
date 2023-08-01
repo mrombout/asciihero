@@ -1,0 +1,46 @@
+= Manual Section Numbers
+:doctype: book
+:asciihero-combat-attributes: strength, dexterity
+
+== Introduction
+
+You can manually set the segment number using the `segmentNumber` attribute.
+Asciihero will make sure to assign that number to the segment while it automatically numbers the rest.
+
+[.gameplay]
+== gameplay
+
+[.segment]
+=== segment_1
+
+Segment 1 (number 1).
+
+[.segment,segmentNumber=4]
+=== segment_2
+
+Segment 2 (number 4).
+
+[.segment,segmentNumber=42]
+=== segment_3
+
+Segment 3 (number 42).
+
+[.segment]
+=== segment_4
+
+Segment 4 (number 2).
+
+[.segment,segmentNumber=6]
+=== segment_5
+
+Segment 5 (number 6).
+
+[.segment,segmentNumber=6]
+=== segment_6
+
+Segment 6 (number 6).
+
+[.segment]
+=== segment_7
+
+Segment 7 (numbe 3).

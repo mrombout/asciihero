@@ -5,20 +5,42 @@ const seedrandom = require('seedrandom')
 function segmentTreeProcessor () {
   const self = this
 
-  self.process(function (doc) {
-    const segmentNodes = doc.findBy({ role: 'segment' })
+  self.process(processSegmentNodes)
+}
 
-    let sectionIndex = 1
-    for (const index in segmentNodes) {
-      const node = segmentNodes[index]
+function processSegmentNodes (doc) {
+  const segmentNodes = doc.findBy({ role: 'segment' })
 
+  const reservedNumbers = []
+  let sectionIndex = 0
+  for (const index in segmentNodes) {
+    const node = segmentNodes[index]
+
+    // NOTE: We probably should probably just rely on default autoId behaviour here...
+    if (node.getId().startsWith('_')) {
       node.setId(node.title)
-      node.setTitle(`${sectionIndex}`)
-      node.addRole('segment')
-
-      sectionIndex += 1
     }
-  })
+
+    let actualSectionIndex = sectionIndex
+    if (node.hasAttribute('segmentNumber')) {
+      const segmentNumber = node.getAttribute('segmentNumber')
+      if (reservedNumbers.includes(segmentNumber)) {
+        doc.getLogger().warn(`segment number '${segmentNumber}' already exists`)
+      }
+
+      actualSectionIndex = segmentNumber
+      reservedNumbers.push(segmentNumber)
+    } else {
+      do {
+        sectionIndex++
+        actualSectionIndex = sectionIndex
+      } while (reservedNumbers.includes(actualSectionIndex))
+    }
+
+    node.setAttribute('segmentNumber', actualSectionIndex)
+    node.setTitle(`${actualSectionIndex}`)
+    node.addRole('segment')
+  }
 }
 
 // turnInlineMacro processes the `turn:<target>[]` marge and turns them into cross-references.
@@ -202,15 +224,7 @@ function shuffleTreeProcessor () {
     }
 
     // re-assign all titles to be in order
-    const nodes = doc.findBy({ role: 'segment' })
-
-    let sectionIndex = 1
-    for (const index in nodes) {
-      const node = nodes[index]
-
-      node.setTitle(`${sectionIndex}`)
-      sectionIndex += 1
-    }
+    processSegmentNodes(doc)
   })
 }
 
