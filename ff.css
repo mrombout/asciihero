@@ -9,6 +9,12 @@
 
 #cover {
   page: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  break-after: page;
+  align-items: flex-end;
 }
 
 .gameplay {
@@ -65,7 +71,7 @@ h1 {
 .content h2,
 #toctitle {
   margin-top: 0;
-  break-before: page;
+  break-before: avoid-page;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-align: center;
