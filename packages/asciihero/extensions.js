@@ -296,7 +296,7 @@ function attrInlineMacro () {
   const self = this
 
   self.process(function (parent, target, attrs) {
-    return self.createInline(parent, 'quoted', `<span class="attribute">${target}</span>`)
+    return self.createInlinePass(parent, `[.attribute]#${target}#`, { attributes: { subs: ['normal'] } })
   })
 }
 
