@@ -6,6 +6,8 @@
 
 == Introduction
 
+CAUTION: Not everything described in this document has been implemented yet.
+
 AsciiHero is an extension to AsciiDoc, a lightweight and semantic markup language.
 While AsciiDoc is primarily designed for writing technical documentation, with AsciiHero it turns into a capable tool for writing adventure gamebooks as well.
 The language can be used to produce a variety of common gamebook output formats, all from content encoded in a concise, human-readable, plain text format.
