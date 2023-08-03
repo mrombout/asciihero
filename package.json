@@ -2,14 +2,14 @@
   "name": "asciihero",
   "version": "0.0.1",
   "description": "The Command Line Interface (CLI) for Asciidoctor.js",
-  "main": "packages/asciihero/extensions.js",
+  "main": "src/extensions.js",
   "engines": {
     "node": ">=16",
     "npm": ">=8.0.0"
   },
   "files": [
     "bin",
-    "packages"
+    "src"
   ],
   "bin": {
     "asciihero": "bin/asciihero"

@@ -4,7 +4,7 @@
 const { Options, Invoker, processor } = require('@asciidoctor/cli')
 const pkg = require('../package.json')
 const converter = require('asciidoctor-pdf/lib/converter.js')
-const extensions = require('../packages/asciihero/extensions.js')
+const extensions = require('../src/extensions.js')
 const path = require('node:path')
 
 process.title = 'asciihero'
