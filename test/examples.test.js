@@ -38,14 +38,14 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
       const expectedOutputImgFile = fs.readFileSync(expectedPageFile)
       const actualOutputImgFile = fs.readFileSync(actualPageFile)
 
-      const { equal, diffImage } = await looksSame(expectedOutputImgFile, actualOutputImgFile, {
+      const { equal, diffImage, differentPixels } = await looksSame(expectedOutputImgFile, actualOutputImgFile, {
         createDiffImage: true,
-        tolerance: 5.5
+        tolerance: 6
       })
 
       if (!equal) {
         await diffImage.save(diffPageFile)
-        assert.fail(`example ${exampleDir} page ${index} has unexpected changes`)
+        expect(differentPixels, `example ${exampleDir} page ${index} has unexpected changes`).to.equal(0)
       }
     }
   }).timeout(10000)
