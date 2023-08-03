@@ -32,4 +32,10 @@ TODO
 [.segment]
 === other_side
 
-TODO
+On the other side of the bridge you see a large stone gate.
+In front of it a feeble looking wizard.
+
+'Before you pass this gate, you must answer me these questions three!' he chants.
+Write you answer in the box below.
+
+textarea::[]

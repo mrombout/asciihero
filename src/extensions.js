@@ -308,6 +308,19 @@ function counterInlineMacro () {
   })
 }
 
+function textareaBlockMacro () {
+  const self = this
+
+  self.process(function (parent, target, attrs) {
+    let rows = 4
+    console.log(attrs)
+    if (Object.hasOwn(attrs, 'rows')) {
+      rows = attrs.rows
+    }
+    return self.createPassBlock(parent, `<textarea rows="${rows}"></textarea>`)
+  })
+}
+
 module.exports.register = function (registry) {
   registry.register(function () {
     this.inlineMacro('turn', turnInlineMacro)
@@ -318,6 +331,7 @@ module.exports.register = function (registry) {
     this.blockMacro('dicetable', dicetableBlockMacro)
     this.inlineMacro('attr', attrInlineMacro)
     this.inlineMacro('counter', counterInlineMacro)
+    this.blockMacro('textarea', textareaBlockMacro)
     this.treeProcessor(segmentTreeProcessor)
     this.treeProcessor(choicesTreeProcessor)
     this.treeProcessor(shuffleTreeProcessor)
