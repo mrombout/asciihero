@@ -268,11 +268,17 @@ function shuffleTreeProcessor () {
 function dicetableBlockMacro () {
   const self = this
   self.process(function (parent, target, attrs) {
+    let seed = null
+    if (Object.hasOwn(attrs, 'seed')) {
+      seed = attrs.seed
+    }
+    const rng = seedrandom(seed)
+
     const numNumbers = parseInt(target, 10)
     const numbers = Array(numNumbers)
       .fill()
       .map((e, i) => i + 1)
-      .sort(() => (Math.random() > 0.5) ? 1 : -1)
+      .sort(() => (rng() > 0.5) ? 1 : -1)
 
     const tableSize = Math.ceil(Math.sqrt(numNumbers))
 

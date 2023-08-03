@@ -5,4 +5,4 @@
 
 Look what's on the table, it's a grid of dice!
 
-dicetable::100[]
+dicetable::100[seed=123]

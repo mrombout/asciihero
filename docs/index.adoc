@@ -531,7 +531,7 @@ If you are new to both, it's recommended to use the link:https://docs.asciidocto
 | `inline`
 | Creates a choice inside a choices list. It must be used together with an unordered list styled with `[choices]`. See <<choices>> for more information.
 
-| `dicetable::<size>[]`
+| `dicetable::<size>[seed=<seed>]`
 | `block`
 | Renders a table of `<size>` squares with sequential numbers on random order. It is designed to be a quick and easy alternative for dice. See <<dicetable>> for more information.
 
