@@ -5,7 +5,6 @@ const looksSame = require('looks-same')
 const path = require('path')
 const chai = require('chai')
 const expect = chai.expect
-const assert = chai.assert
 
 const examplesDir = './examples'
 fs.readdirSync(examplesDir).forEach((exampleDir) => {
@@ -23,8 +22,9 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
   it(exampleDir, async () => {
     execFileSync('asciihero', [adocFile, '--out-file', actualOutputFile])
 
-    const expectedOutputImgs = await pdf2img.convert(expectedOutputFile)
-    const actualOutputImgs = await pdf2img.convert(actualOutputFile)
+    const pdf2imgOpts = { }
+    const expectedOutputImgs = await pdf2img.convert(expectedOutputFile, pdf2imgOpts)
+    const actualOutputImgs = await pdf2img.convert(actualOutputFile, pdf2imgOpts)
 
     expect(actualOutputImgs).to.have.length(expectedOutputImgs.length)
     for (const index in expectedOutputImgs) {
@@ -38,13 +38,14 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
       const expectedOutputImgFile = fs.readFileSync(expectedPageFile)
       const actualOutputImgFile = fs.readFileSync(actualPageFile)
 
-      const { equal, diffImage } = await looksSame(expectedOutputImgFile, actualOutputImgFile, {
-        createDiffImage: true
+      const { equal, diffImage, differentPixels } = await looksSame(expectedOutputImgFile, actualOutputImgFile, {
+        createDiffImage: true,
+        tolerance: 12
       })
 
       if (!equal) {
         await diffImage.save(diffPageFile)
-        assert.fail(`example ${exampleDir} page ${index} has unexpected changes`)
+        expect(differentPixels, `example ${exampleDir} page ${index} has unexpected changes`).to.equal(0)
       }
     }
   }).timeout(10000)

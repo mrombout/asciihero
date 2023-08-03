@@ -24,3 +24,8 @@ jobs:
       - run: npm link
       - run: npm ci
       - run: npm test
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: Example Diffs
+          path: examples/**/*_diff.png
