@@ -1,4 +1,4 @@
-= Simple: An Excellent Beginning
+= Simple: An Excellent Beginning2
 :doctype: book
 :asciihero-combat-attributes: strength, dexterity
 

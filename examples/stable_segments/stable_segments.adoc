@@ -1,6 +1,7 @@
 = Shuffle
 :doctype: book
 :asciihero-shuffle-style: random
+:asciihero-shuffle-seed: 1
 
 == Introduction
 
