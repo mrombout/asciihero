@@ -4,15 +4,19 @@
 :source-highlighter: highlight.js
 :icons: font
 
+.Draft
+[CAUTION]
+Not everything in this document has been implemented yet. Proceed with caution.
+
 == Introduction
 
 AsciiHero is an extension to AsciiDoc, a lightweight and semantic markup language.
 While AsciiDoc is primarily designed for writing technical documentation, with AsciiHero it turns into a capable tool for writing adventure gamebooks as well.
 The language can be used to produce a variety of common gamebook output formats, all from content encoded in a concise, human-readable, plain text format.
 
-The AsciiHero syntax builds on what is already available in AsciiDoc and extends it with new plain text conventions for mkaring up and structuring text specific to gamebooks.
+The AsciiHero syntax builds on what is already available in AsciiDoc and extends it with new plain text conventions for marking up and structuring text specific to gamebooks.
 
-An AsciiHero gamebook can be converted to HTML, PDF and EPUB3 based on templates specifically crafted to follow common gamebook typesetting and conventions.
+An AsciiHero gamebook can be converted to PDF based on templates specifically crafted to follow common gamebook typesetting and conventions.
 All you need is a text editor, AsciiHero will do the rest.
 
 Segments:: You can mark sections with the `[.segment]` style to render them as numbered sections in your book.
@@ -20,19 +24,40 @@ Choices:: You can mark choices with the `[choices]` style and `choice:<id>[<text
 Combat:: You can specify enemies an their attributes and easily use them in combat using a dedicated way of rendering.
 Turn:: Link to segments and automatically replace the link text with the correct segment number.
 Shuffling:: Automatically shuffle all segments in your book to keep the element of surprise for the reader.
-Export formats:: Export your gamebook as HTML, PDF or EPUB3 from the same AsciiHero source file.
 Templates:: Batteries included! AsciiHero comes with several templates inspired by popular gamebooks for that authentic feel.
-Columns:: Automatically distribute your segments in multiple columns for a more pleasant reason experience and saving space.
+Columns:: Automatically distribute your segments in mul tiple columns for a more pleasant reason experience and saving space.
 
 == Installation
 
 AsciiHero is both an extension to link:https://github.com/asciidoctor/asciidoctor.js[Asciidoctor.js], as well as an optional CLI to make it easier to create and convert gamebook documents.
 
+=== from source
+
+Install `asciihero` from source by cloning the repository, installing all dependencies and symlinking the package folder.
+
+[source,console]
+git clone https://github.com/mrombout/asciihero.git
+cd asciihero
+npm install
+npm link
+
+To confirm that AsciiHero is available, execute:
+
+[source,console]
+$ asciihero --version
+AsciiHero 0.0.1 using Asciidoctor.js 2.2.6 (Asciidoctor 2.0.17) [https://asciidoctor.org]
+Runtime Environment (node v20.5.0 on linux)
+CLI version 3.5.0
+
+=== npm
+
+CAUTION: Asciihero has not been published to the npm registry yet and can not be installed through `npm` or `yarn` yet.
+
 Install `asciihero` and the CLI globally and you'll have access to the `asciihero` command anywhere on your system.
 Open a terminal and type:
 
 [source,console]
-$ npm install -g asciihero
+npm install -g asciihero
 
 NOTE: If you prefer Yarn over npn, you can install AsciiHero using `yarn global add asciihero`.
 
@@ -43,14 +68,14 @@ To confirm that AsciiHero is available, execute:
 
 [source,console]
 $ asciihero --version
-AsciiHero 0.0.1 (Asciidoctor.js 2.2.0)
-Runtime Environment (node v12.18.4 on linux)
-CLI version 3.4.0
+AsciiHero 0.0.1 using Asciidoctor.js 2.2.6 (Asciidoctor 2.0.17) [https://asciidoctor.org]
+Runtime Environment (node v20.5.0 on linux)
+CLI version 3.5.0
 
 To confirm that AsciiHero is available in script, execute:
 
 [source,console]
-$  echo "require('asciihero')" | node
+echo "require('asciihero')" | node
 
 If you encounter an error, please refer to <<troubleshooting>>.
 
@@ -71,27 +96,31 @@ This will use the built-in defaults for options and create a new file in the sam
 
 You can get more help directly from the `asciihero` CLI by running the following:
 
+CAUTION: The `asciihero` cli extends the `asciidoctor` command. In theory all options should work, but they have not been tested yet.
+
 [source,console]
 $ asciihero --help
 
 [#cli-options]
 ==== Options
 
+CAUTION: Options marked with ❌ have not been implemented yet.
+
 All options available to link:https://docs.asciidoctor.org/asciidoctor.js/latest/[Asciidoctor.js] are also available in AsciiHero. See link:https://docs.asciidoctor.org/asciidoctor.js/latest/cli/options/[CLI Options | Asciidoctor Docs] for more information.
 In the list below, only AsciiHero specific options are listed.
 
 ===== Authoring
 
---watch:: Watch files and automatically convert them when they change.
+--watch:: ❌ Watch files and automatically convert them when they change.
 
 ===== Document Conversion
 
----format=FORMAT:: Output format of the `OUT_FILE` to be written. Can be one of `pdf`, `epub` or `html`. See <<formats>> for details about each format.
----style=STYLE:: Output style of the `OUT_FILE`. It influences how the gamebook will look. See <<templates>> for available options, and more details about each style.
+---format=FORMAT:: ❌ Output format of the `OUT_FILE` to be written. Can be one of `pdf`, `epub` or `html`. See <<formats>> for details about each format.
+---style=STYLE:: ❌ Output style of the `OUT_FILE`. It influences how the gamebook will look. See <<templates>> for available options, and more details about each style.
 
 ===== Development
 
---debug-output:: Also write any intermediate formats to disk, not only the target format. E.g. for `PDF` it will also write the `.html` to the disk.
+--preview:: OPen the otherwise headless browser for inspecting the generated HTML document (before it gets converted to PDF).
 
 ==== Script
 
@@ -112,7 +141,7 @@ asciihero.register(asciidoctor.Extensions) <2>
 == Concepts
 
 AsciiHero comes with a collection of new styles, roles and macros in order to add more semantics appropriate for a gamebook.
-All of it is compatible with AsciiDoc's standard way of doing this, AsciiHero will make sure everything is rendered how it should be.
+All of it is compatible with AsciiDoc's standard way of doing things, AsciiHero will make sure everything is rendered how it should be.
 
 This section describes the core concepts of AsciiHero that make up your gamebook.
 
@@ -123,7 +152,7 @@ The player reads one section, and then follows the instructions to turn to the n
 In AsciiHero, these are called segments.
 
 Any section can be a segment, all they need is the `[.segment]` style in order to be recognized.
-Once you have marked a section as a `[.segment]`, several things will happen.
+Once you have marked a section as a `[.segment]`, the title will be replaced by a sequental segment number and the original title will be used as the ID.
 
 [source,asciidoc]
 ----
@@ -135,7 +164,7 @@ You are in a cold and dark cave. From up ahead, you hear the wind howling at you
 <2> ID
 <3> Content
 
-// TODO: Screenshot of output
+image::images/segment.png[role="thumb"]
 
 The major different between a `[.segment]` and a normal section is that for segments the title (what you put after `===`) is actually the ID. You can refer to this ID using the `choice:[]` and `turn:[]` macros.
 When you render your gamebook, the ID will be replaced with a number to help the reader navigate the sections of your adventure.
@@ -167,13 +196,7 @@ OH, NO, NOT THE BEES! NOT THE BEES! AAAAAHHHHH! OH, THEY'RE IN MY EYES! MY EYES!
 You are dead.
 ----
 
-Thsi means that while writing you can use convenient and easy to remember segment IDs that you define yourself.
-When converting your document AsciiDoc will turn the above into the following:
-
-[example]
-====
-TODO: Show how the inline turn macro has been replaced by a xref to the correct segment, with the title as the text.
-====
+image::images/turn.png[role="thumb"]
 
 [#choices]
 === Choices
@@ -192,17 +215,12 @@ WARNING: Only `choice:[]` macro list items are valid in `[choices]` lists. Ascii
 * choice:test_2[South?]
 ----
 
+image::images/choices.png[role="thumb"]
+
 In the case of `[choices]`, every choice in the list will be rendered in a special, consistent format based on the template you have selected.
 It is often recommended to use `[choices]` if there are many choices to choose from, of if they occur often, such as directional navigation.
 
-[example]
-====
-TODO: Show how the list is replaced with a table containing all the options.
-====
-
 If you want you choices a but more free-flowing, you can use the `turn:[]` macro instead (see <<macros>>).
-
-// TODO: Cross ref the macros.
 
 [#combat]
 === Combat
@@ -227,10 +245,7 @@ WARNING: Only `enemy:[]` macro list items are valid in `[combat]` lists. AsciiHe
 
 This simple list will then render as a special block according to your selected template style.
 
-[example]
-====
-TODO: Show how the combat list is rendered.
-====
+image::images/combat.png[role="thumb"]
 
 [#shuffling]
 === Shuffling
@@ -268,6 +283,7 @@ The following shuffling styles are available:
 
 In this case AsciiHero will leave all your segments exactly where they are.
 This gives you the freedom to lay out the segments exactly how you want.
+This is the default behavior.
 
 [#shuffle-random]
 ==== random
@@ -278,37 +294,44 @@ This gives you the freedom to lay out the segments exactly how you want.
 :asciihero-shuffle-style: random
 ----
 
-This is the default shuffling option.
-In this case AsciiHero will go through all your segments and randomly shuffle them within their parent section.
-It will make sure that the first segment, and the last segment you defined in your document as kept at the same position so that your gamebook can still have a clear start and ending.
+In this case AsciiHero will go through all your segments and randomly shuffle them with other segments on the same level.
+
+If you want a specific segment to always stay where it is you can use the `[.stable]` style together with the `[.segment]` style like so `[.stable.segment]` or `[.segment.stable]`.
 
 Finally it goes through all segments again, and re-assigns segment numbers to them so that they are still in order.
 This way, the contents of your section will appear to have moved, but all section numbers are still in numerical order so that your reader can easily find the numbered sections they are looking for.
+
+[#dicetable]
+=== Dice Table
+
+Use the `dicetable::<size>[]` macro to generate and render a table of `<size>` squares with sequential numbers on a random order.
+This is intended to be used by the player as an alternative to dice.
+Include several of these somehwere in your book and instruct the player to close their eyes and pick a random number.
+
+image::images/dicetable.png[align="center"]
 
 == Exporting
 
 Exporting means to convert your AsciiHero document and turn it into something that is appropriate for reading by anyone.
 AsciiHero comes with support for a couple of formats and styles.
 
-The format is the type of file that your gamebook will be exported to, such as `.pdf`, `.epub` or `.html`.
+The format is the type of file that your gamebook will be exported to. At the moment only `.pdf` is supported.
 
 The style determines how your gamebook will look.
 AsciiHero comes with a couple of styles inspired by popular gamebooks.
 But you can also add your own custom formats.
+At the moment the only style available is Fighting Fantasy.
 
 [#formats]
 === Formats
 
 ==== PDF
 
-CAUTION: Export to PDF is not supported yet.
-
 AsciiHero's primary focus is the Portable Document Format, or more commonly known as PDF.
-This export format is most appropriate for when you want to print your gamebook by yourself, or at a print shop.
+This export format is most appropriate for when you want to print your gamebook yourself, or at a print shop.
 
 It can also work for reading digitally such as on tablets, computers and even some modern e-readers.
-
-// TODO: List any EPUB specific options
+Because Asciihero will add clickable links to you document, and an outline for easy navigation.
 
 ==== EPUB
 
@@ -316,8 +339,6 @@ CAUTION: Export to EPUB is not supported yet.
 
 AsciiHero can also export your document as an EPUB2 or EPUB3 compatible file.
 This export format is most appropriate for when you want to distribute your gamebook for reading digitally on e-readers.
-
-// TODO: List any EPUB specific options
 
 ==== HTML
 
@@ -343,10 +364,10 @@ AsciiHero comes with a couple of templates inspired by popular gamebooks, but yo
 |===
 | | PDF | EPUB | HTML
 
-| <<template-proteus>>
-| ✅
-| ✅
-| ✅
+| <<template-fabled-lands>>
+| ❌
+| ❌
+| ❌
 
 | <<template-fighting-fantasy>>
 | ✅
@@ -354,12 +375,12 @@ AsciiHero comes with a couple of templates inspired by popular gamebooks, but yo
 | 
 
 | <<template-custom>>
-| ✅
-| ✅
-| ✅
+| ❌
+| ❌
+| ❌
 |===
 
-[#template-proteus]
+[#template-fabled-lands]
 ==== Fabled Lands
 
 TODO: Template inspired by Fabled Lands.
@@ -369,12 +390,14 @@ TODO: Template inspired by Fabled Lands.
 [#template-fighting-fantasy]
 ==== Fighting Fantasy
 
-TODO: Templates inspired by the Fighting Fantasy series.
+A template inspired by the Fighting Fantasy series.
 
 * Segments are rendered in one column.
 
 [#template-custom]
 ==== Custom
+
+CAUTION: Custom templates are not supported yet.
 
 If the built-in templates do not align with your needs you may decide to implement your custom templates.
 If you go this route though, it is good to know that AsciiHero HTML for all current output formats.
@@ -387,22 +410,18 @@ If you're not familiar with CSS for printed media you might want to refer to htt
 
 == Workflow
 
-TODO: Explain how to set up VSCode for authoring gamebooks with the `asciihero` CLI.
-
-=== Online
-
-CAUTION: This workflow is not implemented yet.
-
-The workflow that requires the least amount of setup is the online workflow.
-Simply browse to link:editor.asciihero.se[] to open the online editor and you're ready to go.
-
-Your story will be uploaded and stored on the server, converted to the desired output format and displayed on the same page.
-If you prefer not to share your gamebook with the server, use the <<workflow-cli>> or <<workflow-vscode>> workflows instead.
-
 [#workflow-cli]
 === CLI
 
-CAUTION: This workflow has not been tested yet.
+[CAUTION]
+====
+The `--watch` flag has not been implemented yet. You can use `inotifywait` as an alternative for now.
+
+```
+while inotifywait -e close_write document.adoc; do asciihero document.adoc; done
+```
+
+====
 
 The workflow that requires very little setup is the `CLI` workflow.
 In this workflow you can use your favourite text editor, and the CLI will automatically export you gamebook every time it detects a change.
@@ -414,6 +433,16 @@ $ asciihero --watch gamebook.adoc
 
 AsciiHero will automatically rebuild your gamebook using the default options.
 The `--watch` flag is just an additional flag, all other <<cli-options,CLI flags>> are also still available.
+
+=== Online
+
+CAUTION: This workflow is not implemented yet.
+
+The workflow that requires the least amount of setup is the online workflow.
+Simply browse to link:editor.asciihero.se[] to open the online editor and you're ready to go.
+
+Your story will be uploaded and stored on the server, converted to the desired output format and displayed on the same page.
+If you prefer not to share your gamebook with the server, use the <<workflow-cli>> or <<workflow-vscode>> workflows instead.
 
 [#workflow-vscode]
 === Visual Studio Code
@@ -457,12 +486,19 @@ If you are new to both, it's recommended to use the link:https://docs.asciidocto
 | No
 | List of attributes for enemies when rendering a combat block.
 
-|`gamebook-shuffle-algorithm`
+|`asciihero-shuffle-algorithm`
 |`none` +
 `random`
 |Yes
 |No
 |Algorithm to use when shuffling the segments in the document. See <<shuffling>> for more information.
+
+|`asciihero-shuffle-seed`
+|`<string>` +
+`<integer>`
+|Yes
+|No
+|Seed to use for the random shuffle. Using the same seed guarantees the same order every time you render your gamebook.
 
 |`asciihero-segment-title`
 |`title` +
@@ -495,9 +531,27 @@ If you are new to both, it's recommended to use the link:https://docs.asciidocto
 | `inline`
 | Creates a choice inside a choices list. It must be used together with an unordered list styled with `[choices]`. See <<choices>> for more information.
 
+| `dicetable::<size>[]`
+| `block`
+| Renders a table of `<size>` squares with sequential numbers on random order. It is designed to be a quick and easy alternative for dice. See <<dicetable>> for more information.
+
+| `attr:<name>[]`
+| `inline`
+| Renders the name of an attribute.
+
+| `counter:<name>[]`
+| `inline`
+| Render a counter checkbox to prompt the player to track a certain variable.
+
+| `textarea:<name>[]`
+| `inline`
+| Render a textarea to prompt the player to write something down.
+
 |===
 
 [#troubleshooting]
 == Troubleshooting
 
-TODO
+.TODO
+[NOTE]
+This section has not been written yet! If you run into trouble, don't hesitate to https://github.com/mrombout/asciihero/issues[create an issue] on GitHub.
