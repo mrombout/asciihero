@@ -1,0 +1,35 @@
+= Input
+:doctype: book
+:asciihero-combat-attributes: strength, dexterity
+
+== Introduction
+
+Asciihero is designed for printed media, so it can't ask for player input.
+But sometimes, you might want to prompt users to write things like, and tick a box to help remember something.
+For these purposes you can use the input macros.
+
+[.gameplay]
+== gameplay
+
+[.segment]
+=== counter
+
+counter:a[]
+counter:a[]
+counter:a[]
+counter:a[]
+
+Every time you enter this segment tick one box.
+If all 4 boxes have been ticked, go to turn:segment_2[].
+
+You walk along the old wooden bring and reach the other side, turn to turn:other_side[].
+
+[.segment]
+=== segment_2
+
+TODO
+
+[.segment]
+=== other_side
+
+TODO

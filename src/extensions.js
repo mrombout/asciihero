@@ -300,6 +300,14 @@ function attrInlineMacro () {
   })
 }
 
+function counterInlineMacro () {
+  const self = this
+
+  self.process(function (parent, target, attrs) {
+    return self.createInline(parent, 'quoted', '<input type="checkbox" class="counter" />')
+  })
+}
+
 module.exports.register = function (registry) {
   registry.register(function () {
     this.inlineMacro('turn', turnInlineMacro)
@@ -309,6 +317,7 @@ module.exports.register = function (registry) {
     this.inlineMacro('choice', choiceInlineMacro)
     this.blockMacro('dicetable', dicetableBlockMacro)
     this.inlineMacro('attr', attrInlineMacro)
+    this.inlineMacro('counter', counterInlineMacro)
     this.treeProcessor(segmentTreeProcessor)
     this.treeProcessor(choicesTreeProcessor)
     this.treeProcessor(shuffleTreeProcessor)

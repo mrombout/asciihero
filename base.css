@@ -31,3 +31,15 @@ table.dicetable td p {
     text-align: center;
     width: 32px;
 }
+
+/*******************************************************************************
+* Counter
+ ******************************************************************************/
+.counter {
+    appearance: none;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 0;
+}
