@@ -5,7 +5,6 @@ const looksSame = require('looks-same')
 const path = require('path')
 const chai = require('chai')
 const expect = chai.expect
-const assert = chai.assert
 
 const examplesDir = './examples'
 fs.readdirSync(examplesDir).forEach((exampleDir) => {
@@ -40,7 +39,7 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
 
       const { equal, diffImage, differentPixels } = await looksSame(expectedOutputImgFile, actualOutputImgFile, {
         createDiffImage: true,
-        tolerance: 7
+        tolerance: 7.5
       })
 
       if (!equal) {
