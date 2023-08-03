@@ -11,4 +11,4 @@ To convert an AsciiDoc document run the following command in your terminal:
 asciihero document.adoc
 ```
 
-For more thorough documentation, see [here](https://mrombout.github.io/asciihero).
+For more thorough documentation, see the [documentation](https://mrombout.github.io/asciihero).
