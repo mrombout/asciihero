@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - ghactions-node
   pull_request:
     branches:
       - main
