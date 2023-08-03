@@ -9,6 +9,8 @@ You can use images like any other AsciiDoc document.
 
 Dice, they're more than just rocks.
 
+image:images/img.png[]
+
 image:images/icons/d4.svg[width=16]
 image:images/icons/d6.svg[width=16]
 image:images/icons/d8.svg[width=16]
