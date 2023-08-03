@@ -1,0 +1,15 @@
+name: Documentation
+
+on:
+  push:
+    branches:
+      - ghactions
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: manoelcampos/asciidoctor-ghpages-action@v2
+        with:
+          source_dir: docs/
