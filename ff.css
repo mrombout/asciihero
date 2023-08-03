@@ -188,6 +188,10 @@ table.choices {
   width: 100%;
 }
 
+table.choices td {
+  vertical-align: top;
+}
+
 /* Never wrap the last two columns of a choices table ("turn to" and "<passage number>"). */
 table.choices tr td:nth-last-child(2),
 table.choices tr td:nth-last-child(1) {

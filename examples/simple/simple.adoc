@@ -1,4 +1,4 @@
-= Simple: An Excellent Beginning2
+= Simple: An Excellent Beginning
 :doctype: book
 :asciihero-combat-attributes: strength, dexterity
 
@@ -39,7 +39,7 @@ But sometimes you want to show multiple choices in a more consistent manner.
 You can use an unordered list with the `[choices]` style for that.
 
 [choices]
-* choice:entrance_hall[North?]
+* choice:entrance_hall[North? And this one is so long that it actually wraps. How do we make this look good?]
 * choice:combat[South?]
 
 [.segment]
