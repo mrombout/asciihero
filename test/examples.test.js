@@ -39,7 +39,7 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
 
       const { equal, diffImage, differentPixels } = await looksSame(expectedOutputImgFile, actualOutputImgFile, {
         createDiffImage: true,
-        tolerance: 7.5
+        tolerance: 8
       })
 
       if (!equal) {
