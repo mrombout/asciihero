@@ -116,6 +116,34 @@ h3 + div p {
   string-set: segmentTitle content(text);
 }
 
+.sidebarblock {
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: 2px 2px 0;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+
+.sidebarblock .title {
+  font-weight: 600;
+}
+
+.listingblock code {
+  border: 1px solid black;
+  border-left-width: 3px;  
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* TODO: Move to custom style in examples/intro */
+.listingblock.snip-top code {
+  border-top-style: dashed;
+}
+
+.listingblock.snip-bottom code {
+  border-bottom-style: dashed;
+}
+
 /*******************************************************************************
  * Paged Image
  * NOTE: Very ugly hack, probably broken in many scenarios. Fix me.

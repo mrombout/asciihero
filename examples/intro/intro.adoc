@@ -1,0 +1,164 @@
+= Introduction: An Excellent Beginning
+:doctype: book
+:source-highlighter: highlight.js
+:highlightjs-languages: asciidoc
+:highlightjs-theme: grayscale
+:asciihero-combat-attributes: strength, dexterity
+:toc:
+
+== Introduction
+
+Asciidoc is just like any Asciidoc document.
+All syntax behaves like normal if you do not use any of AsciiHero's extended syntax.
+You can use this for example to introduce your game world, rules and mechanics in the beginning of your book.
+
+=== Concepts, Examples and Style
+
+This document is a quick introduction to the features of AsciiHero while at the same time acting as a way to demonstrate its features.
+
+==== Concepts
+
+Each "Concept" or "Feature" of AsciiHero is introduced in this document when applicable.
+Some of the concepts that are covered in this document are:
+
+* Segments
+* Turns
+* Choices
+* Combat
+* Shuffling
+* Dice Table
+
+For more thorough documentation that is easier to navigate, please refer to the https://mrombout.github.io/asciihero/[AsciiHero documentation] website.
+
+==== Examples
+
+You can find many more examples (including this one) in the https://github.com/mrombout/asciihero/tree/main/examples[`examples/`] directory on GitHub.
+
+In each directory you will find a `.pdf` file and the `.adoc` file that produced them.
+Use these as a reference when you want to learn how to use a specific feature.
+
+==== Style
+
+In the future AsciiHero aims to include several styles inspired by popular published gamebooks.
+For now though it comes with one which is the style of `Fighting Fighting`.
+It is the format the this book is formatted in.
+
+Now that you know what to expect in this book, turn to turn:fresh_start[].
+
+[.gameplay]
+== gameplay
+
+[.segment]
+=== fresh_start
+
+You set out for a fresh new adventure.
+But a good and responsible adventurer always sets out prepared so you create a fresh new `.adoc` and the first segment of you adventure.
+
+[source,asciidoc,linenums,role="snip-bottom"]
+----
+= Kolb & the Dragon
+:doctype: book
+:toc:
+
+[.gameplay]
+== Gameplay
+
+[.segment]
+=== quest_start
+
+Kolb was a brave Nord warrior.
+One day his Chief asked Kolb to slay an evil dragon that threatened their village.
+"Go through the mountain pass, Kolb", his Chief said.
+"You will find the Dragon on the other side."
+Turn to turn:first-journey[].
+----
+
+.`[.gameplay]`
+****
+This https://docs.asciidoctor.org/asciidoc/latest/attributes/role/[role] marks a section for gameplay, which means that AsciiHero will process it.
+****
+
+.https://mrombout.github.io/asciihero/#_segments[`&#x5b;.segment&#x5d;`]
+****
+This https://docs.asciidoctor.org/asciidoc/latest/attributes/role/[role] marks a section as a https://mrombout.github.io/asciihero/#_segments[segment].
+Segments are the building blocks of your gamebook, they are the numbers that you turn to.
+****
+
+As you set out your journey, you realise you need to make a lot of important choices and decisions.
+So you turn to turn:turns[] to learn more about them.
+
+[.segment]
+=== turns
+
+An adventure wouldn't be interesting without choices, decisions and branching paths.
+You can use the inline `turn:<id>&#x5b;&#x5d;` macro for simple choices as part of the text.
+Or provide a list of `[choices]` together with the `choice:<id>&#x5b;text&#x5d;` macro.
+
+[source,asciidoc,linenums,role="snip-top snip-bottom"]
+----
+[.segment]
+=== first_journey
+
+Kolb took his favorite axe and shield and walked to the pass, where he found a cold cave, a windy cave, and a narrow trail.
+
+[choices]
+* choice:cold-cave[Enter the cold cave]
+* choice:windy-cave[Enter the windy cave]
+* choice:narrow-trail[Walk up the trail]
+
+If you are scared and return to the village, turn to turn:return-in-shame[].
+----
+
+.https://mrombout.github.io/asciihero/#_segments[`turn:<id>&#x5b;&#x5d;`]
+****
+Turns are requests to the reader to turn to another segment. 
+There are several flavors and options of this macro, see https://mrombout.github.io/asciihero/#_turns[Turns] for more information.
+****
+
+.https://mrombout.github.io/asciihero/#choices[`&#x5b;choices&#x5d;`]
+****
+TODO
+****
+
+After learning the basics of being an AsciiHero you feel confident enough to delve deeper into the intermediate features (turn to turn:intermediate[])
+
+[.segment]
+=== intermediate
+
+After learning the basics of segments and turns you a determined to learn about the intermediate features of AsciiHero.
+
+[choices]
+* choice:combat[Learn more about combat]
+* choice:shuffling[Learn more about shuffling]
+
+If you are brave enough to learn about the advanced features, turn to turn:advanced[].
+If however, you prefer to end your adventure, turn to turn:export[].
+
+[.segment]
+=== advanced
+
+You are now deep within the bowels of the AsciiHero crypts.
+You light a torch to reveal the following topics to learn about:
+
+[choices]
+* choice:stylesheets[Learn more about custom stylesheets]
+
+[.segment]
+=== combat
+
+TODO
+
+[.segment]
+=== shuffling
+
+TODO
+
+[.segment]
+=== export
+
+TODO
+
+[.segment]
+=== stylesheets
+
+TODO
