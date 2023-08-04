@@ -16,13 +16,16 @@ async function convertFiles (files, argv, options, verbose, preview) {
 }
 
 function buildStylesheetAttribute (cliOptions) {
-  const stylesheetBase = path.resolve(__dirname, 'styles/base.css')
-  const stylesheetFightingFantasy = path.resolve(__dirname, 'styles/ff.css')
-
   let actualStylesheets = [
-    stylesheetBase,
-    stylesheetFightingFantasy
+    path.resolve(__dirname, 'styles/base.css')
   ]
+
+  switch (cliOptions.args.style) {
+    case 'ff':
+      actualStylesheets.push(path.resolve(__dirname, 'styles/ff.css'))
+      break
+  }
+
   cliOptions.attributes
     .map(a => a.split('='))
     .filter(a => a[0] === 'stylesheet')
@@ -45,6 +48,11 @@ class AsciiHeroOptions {
         default: false,
         describe: 'open the otherwise headless browser for inspecting the generated HTML document (before it gets converted to PDF)',
         type: 'boolean'
+      })
+      .addOption('style', {
+        default: 'ff',
+        describe: 'style in which to render the gamebook',
+        choices: ['ff']
       })
   }
 
