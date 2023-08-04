@@ -1,0 +1,411 @@
+= AsciiHero: Style Book
+Firstname Lastname <author@asciidoctor.org>
+1.0, July 29, 2014, Asciidoctor 1.5 article template
+:description: This is a description of the document.
+:doctype: book
+:icons: font
+:toc:
+:toclevels: 5
+:experimental:
+:stem:
+
+This is the preamble of this document.
+
+[abstract]
+== Abstract
+
+This is an abstract.
+
+[dedication]
+== Dedication
+
+To F, simply the best.
+
+[colophon]
+== Colophon
+
+Published by the AsciiHero Group.
+AsciiHero Books Ltd, 27 Diagon Alley, London W8 1LT, England
+
+First published 1989
+
+Text copyright (C) John Doe, 2023
+
+Illustration copyright (C) Jane Doe, 2023
+
+All rights reserved
+
+Printed in The Netherlands by Doe BV, Wegisweg 23
+
+== Blocks
+
+=== Delimited Blocks
+
+A delimited block is a region of content that's bounded on either side by a pair of congruent linewise delimiters.
+
+////
+This is a comment, it won't show up.
+////
+
+.Example Block
+====
+This is an example block.
+====
+
+.Listing Block
+----
+This is a listing block.
+----
+
+.Literal Block
+....
+This is a literal block.
+....
+
+.Open Block
+--
+This is an open block.
+--
+
+.Sidebar Block
+****
+This is a sidebar block.
+****
+
+== Sections
+
+This is a level 2 section paragraph.
+
+=== Level 3
+
+This is a level 3 section paragraph.
+
+==== Level 4
+
+This is a level 4 section paragraph.
+
+===== Level 5
+
+This is a level 5 section paragraph.
+
+== Paragraphs
+
+[.lead]
+This is the lead of a section.
+It may be styled differently in some book styles, or not be styled at all.
+It's just there to look cool ready, but it only really works when you start your section with a longer paragraph like this.
+You know, otherwise it just looks weird.
+
+This is just a normal paragraph.
+
+[.text-left]
+This paragraph is aligned to the left.
+
+[.text-center]
+This paragraph is aligned to the center.
+
+[.text-right]
+This paragraph is aligned to the right.
+
+== Breaks
+
+Below is a thematic break.
+
+'''
+
+This paragraph is follows by a forced page break.
+
+[%always]
+<<<
+
+And there is the text right after the forced page break.
+
+== Text Formatting and Punctuation
+
+Word can be *bold*, _italic_, `monospace`, #highlighted#, ~sub~script, ^super^script and "`quoted`".
+
+== Lists
+
+=== Unordered Lists
+
+Following in an unordered list:
+
+.List title
+* Level 1
+** Level 2
+*** Level 3
+**** Level 4
+***** Level 5
+* Level 1
+
+=== Ordered Lists
+
+.List title
+. First
+.. First A
+... First B
+.... First C
+..... First D
+. Second
+. Third
+. Fourth
+. Fifth
+
+=== Checklists
+
+.Normal checklist
+* [*] checked
+* [x] also checked
+* [ ] not checked
+
+.Interactive checklist
+[%interactive]
+* [*] checked
+* [x] also checked
+* [ ] not checked
+
+== Description Lists
+
+.Basic description list
+Item 1:: Description of item 1
+* List item 1
+* List item 2
+Item 2:: Description of item 2
+Item 3:: Description of item 3
+  Item 3A:::
+    . Item 3I
+      * Item 32
+
+.Horizontal description list
+Item1:: Description of item 1
+Item2:: Description of item 2
+Item3:: Description of item 3
+
+== Links
+
+This is a https://docs.asciidoctor.org/[link].
+
+== Cross References
+
+This is a cross reference to <<_links>> and xref:_footnotes[].
+
+== Footnotes
+
+This page contains a footnote.footnote:[This is a footnote.]
+
+And here another paragraph!footnote:disclaimer[Another footnote.]
+
+And another.footnote:disclaimer[]
+
+== Images
+
+This section contains a bunch of images.
+
+.An elf
+image::images/vector.svg[Elf]
+
+.An elf (thumb)
+[.thumb]
+image::images/vector.svg[Elf]
+
+<<<
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dapibus aliquet massa. Donec eu ligula vel nulla pharetra dictum nec quis leo. Ut at turpis a nunc efficitur fermentum. Suspendisse tempus dui vel augue consequat consequat eu nec sapien. Mauris risus image:images/vector.svg[Elf,150,150,float="left"] sapien, rhoncus in gravida vel, tincidunt non dui. Praesent sed ex non sapien sodales maximus id vulputate sem. Phasellus posuere dui elit, sit amet malesuada ligula sodales eu. Aenean condimentum, nisl at pretium lacinia, ante lorem hendrerit leo, nec malesuada ex purus quis odio. In lacinia, felis eu pharetra scelerisque, sapien est viverra leo, nec luctus risus mi vitae nisi. In vel velit sed velit consequat sagittis vitae at mi. Nulla dictum est et massa rhoncus, et semper ipsum finibus. Aliquam condimentum interdum leo, sit amet mollis lorem auctor nec. Donec a nulla a leo hendrerit consequat. Sed imperdiet lobortis nulla eget maximus. Sed rhoncus neque sit amet sapien fringilla porta. Aenean convallis leo dui, a condimentum libero consequat id.
+
+== Audio and Video
+
+Below is an audio file:
+
+audio::ocean-waves.wav[]
+
+Below is a video file:
+
+video::video-file.mp4[]
+
+== Icons
+
+This is an icon icon:tags[].
+
+== Keyboard Macro
+
+Some keyboard macros are kbd:[F11] and kbd:[Ctrl+T].
+
+== Button and Menu UI Macros
+
+Press the btn:[OK] button.
+
+Select menu:View[Zoom > Reset] to reset the zoom level.
+
+== Admonitions
+
+NOTE: This is a NOTE admonitions.
+
+[TIP]
+.Tip title
+====
+This is a tip.
+====
+
+[IMPORTANT]
+.Important title
+====
+This is important.
+====
+
+[CAUTION]
+.Caution title
+====
+Take caution.
+====
+
+[WARNING]
+.Warning title
+====
+This is a warning.
+====
+
+== Sidebars
+
+[sidebar]
+This is a sidebar.
+
+== Example Blocks
+
+[example]
+This is an example block.
+
+== Blockquotes
+
+.After landing the cloaked Klingon bird of prey in Golden Gate park: 
+[quote,Captain James T. Kirk,Star Trek IV: The Voyage Home]   
+Everybody remember where we parked.
+
+[quote,Monty Python and the Holy Grail]
+____
+Dennis: Come and see the violence inherent in the system. Help! Help! I'm being repressed!
+
+King Arthur: Bloody peasant!
+
+Dennis: Oh, what a giveaway! Did you hear that? Did you hear that, eh? That's what I'm on about! Did you see him repressing me? You saw him, Didn't you?
+____
+
+"I hold it that a little rebellion now and then is a good thing,
+and as necessary in the political world as storms in the physical."
+-- Thomas Jefferson, Papers of Thomas Jefferson: Volume 11
+
+> Quoted text level 1
+
+== Verses
+
+[verse,Carl Sandburg, two lines from the poem Fog]
+The fog comes
+on little cat feet.
+
+== Verbatim and Source Blocks
+
+Following is a source code block.
+
+[source,ruby]
+----
+require 'sinatra'
+
+get '/hi' do
+  "Hello World!"
+end
+----
+
+[source,ruby]
+....
+require 'sinatra'
+
+get '/hi' do
+  "Hello World! This is a very long string that is wrapped because it is look long to fit on the page"
+end
+....
+
+[%linenums,ruby,highlight=2..5]
+----
+ORDERED_LIST_KEYWORDS = {
+  'loweralpha' => 'a',
+  'lowerroman' => 'i',
+  'upperalpha' => 'A',
+  'upperroman' => 'I',
+}
+----
+
+[listing]
+This is an example of a paragraph assigned
+the `listing` style in an attribute list.
+Notice that the monospace marks are
+preserved in the output.
+
+[literal]
+error: 1954 Forbidden search
+absolutely fatal: operation lost in the dodecahedron of doom
+Would you like to try again? y/n
+
+<<<
+
+[source,ruby]
+----
+require 'sinatra' <1>
+
+get '/hi' do <2> <3>
+  "Hello World!"
+end
+----
+<1> Library import
+<2> URL mapping
+<3> Response block
+
+== Tables
+
+.A table with a title
+[cols="1,1"]
+|===
+|Column 1|Column 2
+
+|Cell in column 1, row 1 
+|Cell in column 2, row 1 
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+
+|Cell in column 1, row 3
+|Cell in column 2, row 3 
+|=== 
+
+== Equations and Formulas
+
+stem:[sqrt(4) = 2]  
+
+Water (stem:[H_2O]) is a critical component.
+
+== Open Blocks
+
+--
+An open block can be an anonymous container,
+or it can masquerade as any other block.
+--
+
+== Collapsible Blocks
+
+[%collapsible%open]
+====
+This content is only revealed when the user clicks the block title.
+====
+
+[glossary]
+== Glossary
+horse:: every can see what a horse is
+goats:: a stinking kind of animal
+
+[appendix]
+== Appendix I
+
+This is an appendix.
+
+[appendix]
+== Appendix II
+
+This is another appendix.
