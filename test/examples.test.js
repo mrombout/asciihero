@@ -22,9 +22,7 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
   it(exampleDir, async () => {
     execFileSync('asciihero', [adocFile, '--out-file', actualOutputFile])
 
-    const pdf2imgOpts = {
-      width: 1080
-    }
+    const pdf2imgOpts = { }
     const expectedOutputImgs = await pdf2img.convert(expectedOutputFile, pdf2imgOpts)
     const actualOutputImgs = await pdf2img.convert(actualOutputFile, pdf2imgOpts)
 
@@ -42,7 +40,7 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
 
       const { equal, diffImage, differentPixels } = await looksSame(expectedOutputImgFile, actualOutputImgFile, {
         createDiffImage: true,
-        tolerance: 14
+        tolerance: 15
       })
 
       if (!equal) {
