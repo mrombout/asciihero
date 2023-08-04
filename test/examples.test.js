@@ -23,7 +23,7 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
     execFileSync('asciihero', [adocFile, '--out-file', actualOutputFile])
 
     const pdf2imgOpts = {
-      width: 960
+      width: 1080
     }
     const expectedOutputImgs = await pdf2img.convert(expectedOutputFile, pdf2imgOpts)
     const actualOutputImgs = await pdf2img.convert(actualOutputFile, pdf2imgOpts)
