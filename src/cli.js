@@ -16,8 +16,8 @@ async function convertFiles (files, argv, options, verbose, preview) {
 }
 
 function buildStylesheetAttribute (cliOptions) {
-  const stylesheetBase = path.resolve(__dirname, '../base.css')
-  const stylesheetFightingFantasy = path.resolve(__dirname, '../ff.css')
+  const stylesheetBase = path.resolve(__dirname, 'styles/base.css')
+  const stylesheetFightingFantasy = path.resolve(__dirname, 'styles/ff.css')
 
   let actualStylesheets = [
     stylesheetBase,
