@@ -15,7 +15,8 @@
     "asciihero": "bin/asciihero"
   },
   "scripts": {
-    "test": "mocha 'test/**/*.js'"
+    "test": "mocha 'test/**/*.js'",
+    "clean": "utils/clean.sh"
   },
   "preferGlobal": true,
   "keywords": [
