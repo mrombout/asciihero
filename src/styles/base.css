@@ -1,5 +1,35 @@
-h1, h2, h3, h4, h5, h6 {
+/*******************************************************************************
+ * Base
+ ******************************************************************************/
+:root {
+    --a-color: darkblue;
+
+    --body-font-family: 'Times New Roman', serif;
+}
+
+html {
+    font-family: var(--body-font-family);
+    font-size: 0.75em;
+}
+
+a {
+    text-decoration: none;
+    color: var(--a-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     break-after: avoid;
+}
+
+h2,
+#toctitle {
+    font-size: 2em;
+    font-weight: 600;
 }
 
 img:not([width]) {
@@ -13,8 +43,68 @@ textarea {
     box-shadow: 1px 1px 0;
 }
 
+dt {
+    font-weight: 600;
+}
+
+p {
+    text-align: justify;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid black;
+}
+
 /*******************************************************************************
-* Dice Table
+ * Page
+ ******************************************************************************/
+@page {
+    size: A5;
+    margin: 0.5in 0.25in 0.25in 0.25in;
+}
+
+/*******************************************************************************
+ * Cover
+ ******************************************************************************/
+@page cover {}
+
+#cover {
+    page: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    break-after: page;
+}
+
+#cover h1,
+#cover h2 {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+/*******************************************************************************
+ * Gameplay
+ ******************************************************************************/
+.gameplay {
+    page: gameplay;
+}
+
+@page gameplay :right {
+    @top-right {
+        content: string(segmentTitle, first) "-" string(segmentTitle, last);
+    }
+}
+
+@page gameplay :left {
+    @top-left {
+        content: string(segmentTitle, first) "-" string(segmentTitle, last);
+    }
+}
+
+/*******************************************************************************
+ * Dice Table
  ******************************************************************************/
 table.dicetable {
     border-collapse: collapse;
@@ -53,4 +143,298 @@ table.dicetable td p {
     height: 16px;
     border: 1px solid black;
     box-shadow: 1px 1px 0;
+}
+
+/*******************************************************************************
+* Blocks
+ ******************************************************************************/
+.sidebarblock,
+.exampleblock,
+.listingblock,
+.literalblock,
+.openblock,
+.admonitionblock,
+details .content {
+    border: 1px solid black;
+    box-shadow: 2px 2px 0;
+    padding: 8px;
+    margin-bottom: 12px;
+}
+
+.sidebarblock .title,
+.exampleblock .title,
+.listingblock .title,
+.literalblock .title,
+.openblock .title,
+.admonitionblock .title {
+    font-weight: 600;
+}
+
+.listingblock {
+    border-left-width: 3px;
+    word-wrap: break-word;
+    box-shadow: none;
+}
+
+.literalblock {
+    word-wrap: break-word;
+    box-shadow: none;
+}
+
+.literalblock code,
+.literalblock pre,
+.listingblock code {
+    white-space: pre-wrap;
+}
+
+/* TODO: Move to custom style in examples/intro */
+.listingblock.snip-top code {
+    border-top-style: dashed;
+}
+
+.listingblock.snip-bottom code {
+    border-bottom-style: dashed;
+}
+
+/* font icons */
+.admonitionblock .icon,
+.admonitionblock .icon {
+    font-size: 3em;
+    padding-right: 10px;
+}
+
+/* text icons */
+.admonitionblock {
+    position: relative;
+    display: block;
+}
+
+.admonitionblock .icon>.title {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #000;
+    color: #fff;
+    transform-origin: 0 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 2px 6px 2px 6px;
+    letter-spacing: 2px;
+}
+
+.admonitionblock table,
+.colist table,
+.admonitionblock th,
+.colist th,
+.admonitionblock td,
+.colist td {
+    border: none;
+}
+
+.quoteblock blockquote {
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+}
+
+.quoteblock blockquote:before {
+    content: "“";
+    font-size: 4em;
+    line-height: 0.1em;
+    vertical-align: -0.4em;
+}
+
+.quoteblock blockquote p {
+    display: inline;
+}
+
+.quoteblock .attribution,
+.verseblock .attribution {
+    text-align: right;
+    font-style: italic;
+}
+
+.verseblock pre.content {
+    text-align: center;
+    font-family: var(--body-font-family);
+}
+
+details .content {
+    box-shadow: none;
+    margin-top: 6px;
+}
+
+/*******************************************************************************
+ * Paragraphs
+ ******************************************************************************/
+.lead p:first-letter {
+    padding: 0 .3rem;
+    margin: 0 .3rem 0 0;
+    font-family: var(--font-family-first-letter);
+    border-radius: 2px;
+
+    font-size: 4rem;
+    float: left;
+    line-height: 1;
+}
+
+.text-left p {
+    text-align: left;
+}
+
+.text-right p {
+    text-align: right;
+}
+
+.text-center p {
+    text-align: center;
+}
+
+/*******************************************************************************
+ * Checklist
+ ******************************************************************************/
+ul.checklist li {
+    list-style-type: "❏";
+}
+
+ul.checklist input {
+    display: none;
+}
+
+/*******************************************************************************
+ * Footnotes
+ ******************************************************************************/
+@page {
+    @footnote {
+        float: bottom;
+        font-size: 8px;
+    }
+}
+
+span.footnote {
+    float: footnote;
+}
+
+[data-footnote-call]::after {
+    content: "[" counter(footnote) "]";
+}
+
+.pagedjs_area a[data-footnote-call] {
+    cursor: pointer;
+}
+
+[data-footnote-call]::after {
+    content: "[" counter(footnote) "]";
+}
+
+/*******************************************************************************
+ * Images
+ ******************************************************************************/
+.imageblock.thumb .content {
+    border: 2px solid black;
+}
+
+.image.left img {
+    float: left;
+}
+
+/* NOTE: Very ugly hack, probably broken in many scenarios. Fix me. */
+.imageblock.text-center {
+    text-align: center;
+}
+
+.imageblock.page-image {
+    page: imagepage;
+    break-before: always;
+    break-after: always;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.imageblock.page-image .content,
+.imageblock.page-image .title {
+    height: auto !important;
+}
+
+.imageblock.page-image .title {
+    text-align: left;
+    align-self: flex-start;
+}
+
+/* NOTE: Is it okay to use this? */
+.pagedjs_imagepage_page .pagedjs_page_content div {
+    height: 100%;
+}
+
+@page imagepage {
+    height: auto;
+    height: 100%;
+}
+
+/*******************************************************************************
+ * Audio & Video
+ ******************************************************************************/
+.audioblock {
+    display: none;
+}
+
+.videoblock {
+    display: none;
+}
+
+/*******************************************************************************
+ * Keyboard, Menu & Buttons
+ ******************************************************************************/
+kbd,
+b.button {
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 2px;
+    border-bottom-width: 2px;
+}
+
+b.button {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.menuseq i.caret {
+    font-style: normal;
+}
+
+.menuseq i.caret::before {
+    content: "➤"
+}
+
+/*******************************************************************************
+ * Table
+ ******************************************************************************/
+table {
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+th {
+    text-align: left;
+}
+
+/******************************************************************************
+ * Table of Contents
+ ******************************************************************************/
+#toc {
+    page: tableofcontents;
+}
+
+#toc.toc a::after,
+#toc.toc2 a::after {
+    content: target-counter(attr(href url), page);
+    color: var(--a-color);
+    text-align: right;
+    display: block;
 }
