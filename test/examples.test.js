@@ -26,7 +26,7 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
     const expectedOutputImgs = await pdf2img.convert(expectedOutputFile, pdf2imgOpts)
     const actualOutputImgs = await pdf2img.convert(actualOutputFile, pdf2imgOpts)
 
-    expect(actualOutputImgs).to.have.length(expectedOutputImgs.length)
+    expect(actualOutputImgs, 'number of pages are not the same').to.have.length(expectedOutputImgs.length)
     for (const index in expectedOutputImgs) {
       const expectedPageFile = path.join(tmpDir, `${exampleDir}_${index}.png`)
       const actualPageFile = path.join(tmpDir, `${exampleDir}_actual_${index}.png`)
