@@ -16,6 +16,9 @@ jobs:
       matrix:
         node-version: [20.x]
 
+    container:
+      image: ghcr.io/mrombout/asciihero:pr-89
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
