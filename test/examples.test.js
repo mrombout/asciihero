@@ -16,7 +16,7 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
   const actualOutputFile = path.join(tmpDir, `${exampleDir}_actual.pdf`)
 
   afterEach(() => {
-    //fs.rmSync(tmpDir, { recursive: true, force: true })
+    fs.rmSync(tmpDir, { recursive: true, force: true })
   })
 
   it(exampleDir, async () => {
@@ -30,7 +30,6 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
     for (const index in expectedOutputImgs) {
       const expectedPageFile = path.join(tmpDir, `${exampleDir}_${index}.png`)
       const actualPageFile = path.join(tmpDir, `${exampleDir}_actual_${index}.png`)
-      const diffPageFile = path.join(basePath, `${exampleDir}_${index}_diff.png`)
 
       fs.writeFileSync(expectedPageFile, expectedOutputImgs[index])
       fs.writeFileSync(actualPageFile, actualOutputImgs[index])
@@ -45,7 +44,15 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
       })
 
       if (!equal) {
+        const diffPageFile = path.join(basePath, `${exampleDir}_${index}_diff.png`)
         await diffImage.save(diffPageFile)
+
+        const expectedPageFileReference = path.join(basePath, `${exampleDir}_${index}.png`)
+        fs.copyFile(expectedPageFile, expectedPageFileReference)
+
+        const actualPageFileReference = path.join(basePath, `${exampleDir}_actual_${index}.png`)
+        fs.copyFile(actualPageFileReference, expectedPageFileReference)
+
         expect(differentPixels, `example ${exampleDir} page ${index} has unexpected changes`).to.equal(0)
       }
     }
