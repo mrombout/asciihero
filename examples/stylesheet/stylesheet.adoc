@@ -128,10 +128,10 @@ Word can be *bold*, _italic_, `monospace`, #highlighted#, ~sub~script, ^super^sc
 
 === Unordered Lists
 
-Following in an unordered list:
+Following in an unordered ◇⟐⟡ list:
 
 .List title
-* Level 1
+* Level 1 
 ** Level 2
 *** Level 3
 **** Level 4
