@@ -16,7 +16,7 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
   const actualOutputFile = path.join(tmpDir, `${exampleDir}_actual.pdf`)
 
   afterEach(() => {
-    fs.rmSync(tmpDir, { recursive: true, force: true })
+    //fs.rmSync(tmpDir, { recursive: true, force: true })
   })
 
   it(exampleDir, async () => {

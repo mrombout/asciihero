@@ -28,4 +28,4 @@ jobs:
         if: failure()
         with:
           name: Example Diffs
-          path: examples/**/*_diff.png
+          path: "*"
