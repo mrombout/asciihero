@@ -21,10 +21,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: sudo apt install -y fonts-noto
       - run: npm link
       - run: npm ci
-      - run: npm test
+      - run: sudo apt install -y fonts-noto && npm test
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
