@@ -310,6 +310,14 @@ Include several of these somehwere in your book and instruct the player to close
 
 image::images/dicetable.png[align="center"]
 
+[#dicefooter]
+=== Dice Footer
+
+Add the `:asciihero-dice-footer: <string>` attribute to generate and render two dice showing random numbers in the footer of every page containing a segment.
+The `<string>` is used as the seed for generating the random dice numbers.
+
+image::images/dicefooter.png[align="center"]
+
 == Exporting
 
 Exporting means to convert your AsciiHero document and turn it into something that is appropriate for reading by anyone.
@@ -481,31 +489,41 @@ If you are new to both, it's recommended to use the link:https://docs.asciidocto
 |Name |Allowable Values |Modifiable |API/CLI Only |Notes
 
 |`asciihero-combat-attributes`
-| _comma-separated list of attributes_
-| Yes
-| No
-| List of attributes for enemies when rendering a combat block.
+|_comma-separated list of attributes_
+|Yes
+|No
+|List of attributes for enemies when rendering a combat block.
+
+|`asciihero-dice-footer`
+|`<string>`
+|Yes
+|No
+|Add a pair of dice to the footer of every page containing segments.
+The `<string>` is used as the seed for the random dice.
+See <<dicefooter>> for more information.
 
 |`asciihero-shuffle-algorithm`
 |`none` +
 `random`
 |Yes
 |No
-|Algorithm to use when shuffling the segments in the document. See <<shuffling>> for more information.
+|Algorithm to use when shuffling the segments in the document.
+See <<shuffling>> for more information.
 
 |`asciihero-shuffle-seed`
 |`<string>` +
 `<integer>`
 |Yes
 |No
-|Seed to use for the random shuffle. Using the same seed guarantees the same order every time you render your gamebook.
+|Seed to use for the random shuffle.
+Using the same seed guarantees the same order every time you render your gamebook.
 
 |`asciihero-segment-title`
 |`title` +
 `number`
-| Yes
-| No
-| Sets whether to show segment as titles (for debugging), or number (default).
+|Yes
+|No
+|Sets whether to show segment as titles (for debugging), or number (default).
 |===
 
 [#macros]
