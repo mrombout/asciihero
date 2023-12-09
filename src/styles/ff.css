@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pirata+One');
 @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@200;300;500');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300');
 
 :root {
@@ -11,7 +12,7 @@
 
   --cover-title-font-family: 'Pirata One', cursive !important;
   --h2-title-font-family: 'Spectral', serif;
-  --body-font-family: 'Merriweather', serif;
+  --body-font-family: 'Merriweather', 'Noto Serif', serif;
 }
 
 /*******************************************************************************
