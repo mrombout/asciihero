@@ -3,7 +3,7 @@
 :asciihero-shuffle-style: random
 :asciihero-shuffle-seed: 1234
 :icons: font
-:asciihero-dice-footer: true
+:asciihero-dice-footer: 1234
 
 == Introduction
 
