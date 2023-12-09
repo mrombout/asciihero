@@ -1,5 +1,47 @@
 const seedrandom = require('seedrandom')
 
+// diceFooterProcessor processes all sections to add a hidden section with die
+// numbers. The last set of hidden dice sections are then shown in the footer
+// of the page.
+function diceFooterProcessor () {
+  const self = this
+
+  const dice = [
+    "",
+    "icon:dice-one[]",
+    "icon:dice-two[]",
+    "icon:dice-three[]",
+    "icon:dice-four[]",
+    "icon:dice-five[]",
+    "icon:dice-six[]",
+  ]
+
+  self.process(function (doc) {
+    if (!doc.hasAttribute('asciihero-dice-footer')) {
+      return
+    }
+
+    const seed = doc.getAttribute('asciihero-dice-footer')
+    const rng = seedrandom(seed)
+
+    const segmentNodes = doc.findBy({ role: 'segment' })
+  
+    let sectionIndex = 0
+    for (const index in segmentNodes) {
+      const node = segmentNodes[index]
+  
+      // NOTE: We probably should probably just rely on default autoId behaviour here...
+      if (node.getId().startsWith('_')) {
+        node.setId(node.title)
+      }
+ 
+      const rndInt1 = Math.floor(rng() * 6) + 1
+      const rndInt2 = Math.floor(rng() * 6) + 1
+      self.parseContent(node, `[.footer-die]#${dice[rndInt1]} ${dice[rndInt2]}#`)
+    }
+  })
+}
+
 // segmentTreeProcessor processes all sections with the `segment` style by
 // assigning them the right IDs and seting a numeric title.
 function segmentTreeProcessor () {
@@ -341,5 +383,6 @@ module.exports.register = function (registry) {
     this.treeProcessor(segmentTreeProcessor)
     this.treeProcessor(choicesTreeProcessor)
     this.treeProcessor(shuffleTreeProcessor)
+    this.treeProcessor(diceFooterProcessor)
   })
 }

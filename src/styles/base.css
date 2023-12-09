@@ -134,6 +134,30 @@ table.dicetable td p {
 }
 
 /*******************************************************************************
+* Dice Footer
+ ******************************************************************************/
+.footer-die {
+    display: none;
+    font-size: 1.5em;
+}
+
+.footer-die {
+    position: running(footer-die);
+}
+
+@page gameplay :right {
+    @bottom-center {
+        content: element(footer-die, first)
+    }
+}
+
+@page gameplay :left {
+    @bottom-center {
+        content: element(footer-die, first)
+    }
+}
+
+/*******************************************************************************
 * Counter
  ******************************************************************************/
 .counter {
