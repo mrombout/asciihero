@@ -128,7 +128,7 @@ Word can be *bold*, _italic_, `monospace`, #highlighted#, ~sub~script, ^super^sc
 
 === Unordered Lists
 
-Following in an unordered ◇⟐⟡ list:
+Following in an unordered list:
 
 .List title
 * Level 1 
