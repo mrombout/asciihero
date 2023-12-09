@@ -21,6 +21,9 @@ fs.readdirSync(examplesDir).forEach((exampleDir) => {
 
   it(exampleDir, async () => {
     execFileSync('asciihero', [adocFile, '--out-file', actualOutputFile])
+    if (process.env.UPDATE) {
+      execFileSync('asciihero', [adocFile, '--out-file', expectedOutputFile])
+    }
 
     const pdf2imgOpts = { }
     const expectedOutputImgs = await pdf2img.convert(expectedOutputFile, pdf2imgOpts)
