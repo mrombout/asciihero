@@ -1,0 +1,68 @@
+= Dice Footer
+:doctype: book
+:asciihero-shuffle-style: random
+:asciihero-shuffle-seed: 1234
+:icons: font
+:asciihero-dice-footer: true
+
+== Introduction
+
+If you set `:asciihero-dice-footer: true` it will add 2 random `d6` dice to the footer of each page.
+Your readers can use this in a pinch if they don't have any dice handy!
+
+[.gameplay]
+== Gameplay
+
+[.segment]
+=== segment_1
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum mauris quam, ut congue magna imperdiet at. Nunc ipsum turpis, pretium et congue vel, dictum eu ex. Integer tristique posuere ipsum, vel mattis nisi eleifend nec. Vivamus vitae sem ligula. Fusce ac nunc et massa viverra finibus. Vestibulum molestie quam sit amet pretium fermentum. Nunc posuere rutrum dolor eu tempus. Donec arcu ligula, consequat a enim nec, tincidunt hendrerit ipsum. Morbi quis metus leo. Cras a neque interdum, convallis ligula ut, convallis lacus. Phasellus efficitur tellus id orci sagittis, iaculis elementum ligula facilisis. Suspendisse blandit malesuada tellus, nec rutrum orci euismod sed. Integer dignissim eu arcu id ornare. 
+
+[.segment]
+=== segment_2
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum mauris quam, ut congue magna imperdiet at. Nunc ipsum turpis, pretium et congue vel, dictum eu ex. Integer tristique posuere ipsum, vel mattis nisi eleifend nec. Vivamus vitae sem ligula. Fusce ac nunc et massa viverra finibus. Vestibulum molestie quam sit amet pretium fermentum. Nunc posuere rutrum dolor eu tempus. Donec arcu ligula, consequat a enim nec, tincidunt hendrerit ipsum. Morbi quis metus leo. Cras a neque interdum, convallis ligula ut, convallis lacus. Phasellus efficitur tellus id orci sagittis, iaculis elementum ligula facilisis. Suspendisse blandit malesuada tellus, nec rutrum orci euismod sed. Integer dignissim eu arcu id ornare. 
+
+[.segment]
+=== segment_3
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum mauris quam, ut congue magna imperdiet at. Nunc ipsum turpis, pretium et congue vel, dictum eu ex. Integer tristique posuere ipsum, vel mattis nisi eleifend nec. Vivamus vitae sem ligula. Fusce ac nunc et massa viverra finibus. Vestibulum molestie quam sit amet pretium fermentum. Nunc posuere rutrum dolor eu tempus. Donec arcu ligula, consequat a enim nec, tincidunt hendrerit ipsum. Morbi quis metus leo. Cras a neque interdum, convallis ligula ut, convallis lacus. Phasellus efficitur tellus id orci sagittis, iaculis elementum ligula facilisis. Suspendisse blandit malesuada tellus, nec rutrum orci euismod sed. Integer dignissim eu arcu id ornare. 
+
+[.segment]
+=== segment_4
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum mauris quam, ut congue magna imperdiet at. Nunc ipsum turpis, pretium et congue vel, dictum eu ex. Integer tristique posuere ipsum, vel mattis nisi eleifend nec. Vivamus vitae sem ligula. Fusce ac nunc et massa viverra finibus. Vestibulum molestie quam sit amet pretium fermentum. Nunc posuere rutrum dolor eu tempus. Donec arcu ligula, consequat a enim nec, tincidunt hendrerit ipsum. Morbi quis metus leo. Cras a neque interdum, convallis ligula ut, convallis lacus. Phasellus efficitur tellus id orci sagittis, iaculis elementum ligula facilisis. Suspendisse blandit malesuada tellus, nec rutrum orci euismod sed. Integer dignissim eu arcu id ornare. 
+
+[.segment]
+=== segment_5
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum mauris quam, ut congue magna imperdiet at. Nunc ipsum turpis, pretium et congue vel, dictum eu ex. Integer tristique posuere ipsum, vel mattis nisi eleifend nec. Vivamus vitae sem ligula. Fusce ac nunc et massa viverra finibus. Vestibulum molestie quam sit amet pretium fermentum. Nunc posuere rutrum dolor eu tempus. Donec arcu ligula, consequat a enim nec, tincidunt hendrerit ipsum. Morbi quis metus leo. Cras a neque interdum, convallis ligula ut, convallis lacus. Phasellus efficitur tellus id orci sagittis, iaculis elementum ligula facilisis. Suspendisse blandit malesuada tellus, nec rutrum orci euismod sed. Integer dignissim eu arcu id ornare. 
+
+[.segment]
+=== segment_6
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum mauris quam, ut congue magna imperdiet at. Nunc ipsum turpis, pretium et congue vel, dictum eu ex. Integer tristique posuere ipsum, vel mattis nisi eleifend nec. Vivamus vitae sem ligula. Fusce ac nunc et massa viverra finibus. Vestibulum molestie quam sit amet pretium fermentum. Nunc posuere rutrum dolor eu tempus. Donec arcu ligula, consequat a enim nec, tincidunt hendrerit ipsum. Morbi quis metus leo. Cras a neque interdum, convallis ligula ut, convallis lacus. Phasellus efficitur tellus id orci sagittis, iaculis elementum ligula facilisis. Suspendisse blandit malesuada tellus, nec rutrum orci euismod sed. Integer dignissim eu arcu id ornare. 
+
+[.segment]
+=== segment_7
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum mauris quam, ut congue magna imperdiet at. Nunc ipsum turpis, pretium et congue vel, dictum eu ex. Integer tristique posuere ipsum, vel mattis nisi eleifend nec. Vivamus vitae sem ligula. Fusce ac nunc et massa viverra finibus. Vestibulum molestie quam sit amet pretium fermentum. Nunc posuere rutrum dolor eu tempus. Donec arcu ligula, consequat a enim nec, tincidunt hendrerit ipsum. Morbi quis metus leo. Cras a neque interdum, convallis ligula ut, convallis lacus. Phasellus efficitur tellus id orci sagittis, iaculis elementum ligula facilisis. Suspendisse blandit malesuada tellus, nec rutrum orci euismod sed. Integer dignissim eu arcu id ornare. 
+
+[.segment]
+=== segment_8
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum mauris quam, ut congue magna imperdiet at. Nunc ipsum turpis, pretium et congue vel, dictum eu ex. Integer tristique posuere ipsum, vel mattis nisi eleifend nec. Vivamus vitae sem ligula. Fusce ac nunc et massa viverra finibus. Vestibulum molestie quam sit amet pretium fermentum. Nunc posuere rutrum dolor eu tempus. Donec arcu ligula, consequat a enim nec, tincidunt hendrerit ipsum. Morbi quis metus leo. Cras a neque interdum, convallis ligula ut, convallis lacus. Phasellus efficitur tellus id orci sagittis, iaculis elementum ligula facilisis. Suspendisse blandit malesuada tellus, nec rutrum orci euismod sed. Integer dignissim eu arcu id ornare. 
+
+[.segment]
+=== segment_9
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum mauris quam, ut congue magna imperdiet at. Nunc ipsum turpis, pretium et congue vel, dictum eu ex. Integer tristique posuere ipsum, vel mattis nisi eleifend nec. Vivamus vitae sem ligula. Fusce ac nunc et massa viverra finibus. Vestibulum molestie quam sit amet pretium fermentum. Nunc posuere rutrum dolor eu tempus. Donec arcu ligula, consequat a enim nec, tincidunt hendrerit ipsum. Morbi quis metus leo. Cras a neque interdum, convallis ligula ut, convallis lacus. Phasellus efficitur tellus id orci sagittis, iaculis elementum ligula facilisis. Suspendisse blandit malesuada tellus, nec rutrum orci euismod sed. Integer dignissim eu arcu id ornare. 
+
+[.segment]
+=== segment_10
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum mauris quam, ut congue magna imperdiet at. Nunc ipsum turpis, pretium et congue vel, dictum eu ex. Integer tristique posuere ipsum, vel mattis nisi eleifend nec. Vivamus vitae sem ligula. Fusce ac nunc et massa viverra finibus. Vestibulum molestie quam sit amet pretium fermentum. Nunc posuere rutrum dolor eu tempus. Donec arcu ligula, consequat a enim nec, tincidunt hendrerit ipsum. Morbi quis metus leo. Cras a neque interdum, convallis ligula ut, convallis lacus. Phasellus efficitur tellus id orci sagittis, iaculis elementum ligula facilisis. Suspendisse blandit malesuada tellus, nec rutrum orci euismod sed. Integer dignissim eu arcu id ornare. 
+
+== The End
+
+TODO
