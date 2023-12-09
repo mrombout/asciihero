@@ -119,6 +119,10 @@ ul li {
   padding-inline-start: 1ch;
 }
 
+ul li::marker {
+  font-family: var(--body-font-family);
+}
+
 ul ul li {
   list-style-type: "◇";
 }
