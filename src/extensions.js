@@ -21,6 +21,9 @@ function diceFooterProcessor () {
       return
     }
 
+    const seed = doc.getAttribute('asciihero-dice-footer')
+    const rng = seedrandom(seed)
+
     const segmentNodes = doc.findBy({ role: 'segment' })
   
     let sectionIndex = 0
@@ -32,8 +35,8 @@ function diceFooterProcessor () {
         node.setId(node.title)
       }
  
-      const rndInt1 = Math.floor(Math.random() * 6) + 1
-      const rndInt2 = Math.floor(Math.random() * 6) + 1
+      const rndInt1 = Math.floor(rng() * 6) + 1
+      const rndInt2 = Math.floor(rng() * 6) + 1
       self.parseContent(node, `[.footer-die]#${dice[rndInt1]} ${dice[rndInt2]}#`)
     }
   })
