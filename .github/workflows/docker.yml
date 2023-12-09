@@ -4,13 +4,17 @@ on:
   push:
     branches:
       - main
+    paths:
+      - Dockerfile
   pull_request:
     branches:
       - main
+    paths:
+      - Dockerfile
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}-test
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-push:
@@ -35,5 +39,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: main
+          tags: test
           labels: ${{ steps.meta.outputs.labels }}
