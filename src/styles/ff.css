@@ -35,7 +35,7 @@ h5 {
   font-weight: 400;
 }
 
-code {
+code, pre {
   font-family: 'Inconsolata', monospace;
 }
 
