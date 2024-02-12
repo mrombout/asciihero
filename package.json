@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "@asciidoctor/core": "^2.2.6",
-    "asciidoctor": "^2.2.6",
+    "asciidoctor": "^3.0.4",
     "asciidoctor-pdf": "^1.0.0-alpha.16",
     "seedrandom": "^3.0.5",
     "yargs": "^17.7.2"
