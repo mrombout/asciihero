@@ -23,7 +23,7 @@
     "asciidoc"
   ],
   "dependencies": {
-    "@asciidoctor/core": "^2.2.6",
+    "@asciidoctor/core": "^2.2.7",
     "asciidoctor": "^2.2.6",
     "asciidoctor-pdf": "^1.0.0-alpha.16",
     "seedrandom": "^3.0.5",
