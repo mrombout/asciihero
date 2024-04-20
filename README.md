@@ -136,8 +136,8 @@ For more thorough documentation, see the [documentation](https://mrombout.github
         </td>
         <td width="25%">
             Stylesheet<br />
-            <a href="./examples/stylesheets/stylesheets.adoc"> Source </a> / 
-            <a href="./examples/stylesheets/stylesheets.pdf"> PDF </a>
+            <a href="./examples/stylesheet/stylesheet.adoc"> Source </a> / 
+            <a href="./examples/stylesheet/stylesheet.pdf"> PDF </a>
         </td>
         <td width="25%"></td>
         <td width="25%"></td>
