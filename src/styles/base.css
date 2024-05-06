@@ -47,13 +47,13 @@ dt {
     font-weight: 600;
 }
 
-p {
-    text-align: justify;
-}
-
 hr {
     border: none;
     border-top: 1px solid black;
+}
+
+.stretch {
+    width: 100%;
 }
 
 /*******************************************************************************
@@ -290,6 +290,10 @@ details .content {
 /*******************************************************************************
  * Paragraphs
  ******************************************************************************/
+.paragraph p {
+    text-align: justify;
+}
+
 .lead p:first-letter {
     padding: 0 .3rem;
     margin: 0 .3rem 0 0;
@@ -434,18 +438,106 @@ b.button {
 /*******************************************************************************
  * Table
  ******************************************************************************/
-table {
-    border-collapse: collapse;
+table p {
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
-table,
-th,
-td {
-    border: 1px solid black;
+table.tableblock {
+    max-width: 100%;
+    border-collapse: collapse
 }
 
-th {
-    text-align: left;
+table.tableblock td > .paragraph:last-child p > p:last-child, table.tableblock th > p:last-child, table.tableblock td > p:last-child {
+    margin-bottom: 0
+}
+
+table.tableblock, th.tableblock, td.tableblock {
+    border: 0 solid #000
+}
+
+table.grid-all > thead > tr > .tableblock, table.grid-all > tbody > tr > .tableblock {
+    border-width: 0 1px 1px 0
+}
+
+table.grid-all > tfoot > tr > .tableblock {
+    border-width: 1px 1px 0 0
+}
+
+table.grid-cols > * > tr > .tableblock {
+    border-width: 0 1px 0 0
+}
+
+table.grid-rows > thead > tr > .tableblock, table.grid-rows > tbody > tr > .tableblock {
+    border-width: 0 0 1px 0
+}
+
+table.grid-rows > tfoot > tr > .tableblock {
+    border-width: 1px 0 0 0
+}
+
+table.grid-all > * > tr > .tableblock:last-child, table.grid-cols > * > tr > .tableblock:last-child {
+    border-right-width: 0
+}
+
+table.grid-all > tbody > tr:last-child > .tableblock, table.grid-all > thead:last-child > tr > .tableblock, table.grid-rows > tbody > tr:last-child > .tableblock, table.grid-rows > thead:last-child > tr > .tableblock {
+    border-bottom-width: 0
+}
+
+table.frame-all {
+    border-width: 1px
+}
+
+table.frame-sides {
+    border-width: 0 1px
+}
+
+table.frame-topbot {
+    border-width: 1px 0
+}
+
+th.halign-left, td.halign-left {
+    text-align: left
+}
+
+th.halign-right, td.halign-right {
+    text-align: right
+}
+
+th.halign-center, td.halign-center {
+    text-align: center
+}
+
+th.valign-top, td.valign-top {
+    vertical-align: top
+}
+
+th.valign-bottom, td.valign-bottom {
+    vertical-align: bottom
+}
+
+th.valign-middle, td.valign-middle {
+    vertical-align: middle
+}
+
+table thead th, table tfoot th {
+    font-weight: bold
+}
+
+tbody tr th {
+    display: table-cell;
+    line-height: 1.6;
+    background: #f7f8f7
+}
+
+tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p {
+    color: #000;
+    font-weight: bold
+}
+
+p.tableblock > code:only-child {
+    background: none;
+    padding: 0
 }
 
 /******************************************************************************

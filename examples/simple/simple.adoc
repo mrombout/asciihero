@@ -60,7 +60,7 @@ You look in the well and see something, you reach for it and grab the item.
 
 Roll a `d6`, this determines the item that you have found.
 
-[cols="1,1"]
+[cols="1,1",frame=none,grid=none]
 |===
 | d6| Item
 

@@ -240,7 +240,7 @@ function choicesTreeProcessor () {
         choices.push(choice)
       }
 
-      let content = '[.choices]\n'
+      let content = '[.choices,frame=none,grid=none]\n'
       content += '[cols="10,1,>1"]\n'
       content += '|===\n'
 

@@ -1,0 +1,122 @@
+= Tables
+:doctype: book
+:asciihero-combat-attributes: strength, dexterity
+
+== Introduction
+
+AsciiHero supports tables of the tabular variety (sorry knights).
+They work the same as they do in any AsciiDoc document.
+
+The following table is defined without any options:
+
+=== Default
+
+[cols="1,1"]
+|===
+|Cell in column 1, row 1 
+|Cell in column 2, row 1 
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+
+|Cell in column 1, row 3
+|Cell in column 2, row 3 
+|===
+
+<<<
+
+=== Frame
+
+The following table is defined with `frame=ends`:
+
+[frame=ends]
+|===
+|Column 1, header row |Column 2, header row |Column 3, header row
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|Cell in column 3, row 2
+
+|Cell in column 1, row 3
+|Cell in column 2, row 3
+|Cell in column 3, row 3
+|===
+
+The following table is defined with `frame=sides`:
+
+[frame=sides]
+|===
+|Column 1, header row |Column 2, header row |Column 3, header row
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|Cell in column 3, row 2
+
+|Cell in column 1, row 3
+|Cell in column 2, row 3
+|Cell in column 3, row 3
+|===
+
+The following table is defined with `frame=none`:
+
+[frame=none]
+|===
+|Column 1, header row |Column 2, header row |Column 3, header row
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|Cell in column 3, row 2
+
+|Cell in column 1, row 3
+|Cell in column 2, row 3
+|Cell in column 3, row 3
+|===
+
+<<<
+
+=== Grid
+
+The following table is defined with `grid=rows`:
+
+[grid=rows]
+|===
+|Column 1, header row |Column 2, header row |Column 3, header row
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|Cell in column 3, row 2
+
+|Cell in column 1, row 3
+|Cell in column 2, row 3
+|Cell in column 3, row 3
+|===
+
+The following table is defined with `grid=cols`:
+
+[grid=cols]
+|===
+|Column 1, header row |Column 2, header row |Column 3, header row
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|Cell in column 3, row 2
+
+|Cell in column 1, row 3
+|Cell in column 2, row 3
+|Cell in column 3, row 3
+|===
+
+The following table is defined with `grid=none`:
+
+[grid=none]
+|===
+|Column 1, header row |Column 2, header row |Column 3, header row
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+|Cell in column 3, row 2
+
+|Cell in column 1, row 3
+|Cell in column 2, row 3
+|Cell in column 3, row 3
+|===
